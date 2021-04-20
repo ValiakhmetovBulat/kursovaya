@@ -44,10 +44,11 @@
             this.buttonBookARoom.ForeColor = System.Drawing.Color.White;
             this.buttonBookARoom.Location = new System.Drawing.Point(511, 167);
             this.buttonBookARoom.Name = "buttonBookARoom";
-            this.buttonBookARoom.Size = new System.Drawing.Size(139, 30);
+            this.buttonBookARoom.Size = new System.Drawing.Size(139, 40);
             this.buttonBookARoom.TabIndex = 0;
             this.buttonBookARoom.Text = "Забронировать номер";
             this.buttonBookARoom.UseVisualStyleBackColor = true;
+            this.buttonBookARoom.Click += new System.EventHandler(this.buttonBookARoom_Click);
             // 
             // buttonExtraService
             // 
@@ -76,7 +77,7 @@
             // textBoxCash
             // 
             this.textBoxCash.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.textBoxCash.Location = new System.Drawing.Point(511, 12);
+            this.textBoxCash.Location = new System.Drawing.Point(511, 10);
             this.textBoxCash.Name = "textBoxCash";
             this.textBoxCash.ReadOnly = true;
             this.textBoxCash.Size = new System.Drawing.Size(139, 21);
@@ -145,7 +146,7 @@
         private System.Windows.Forms.Button buttonBookARoom;
         private System.Windows.Forms.Button buttonExtraService;
         private System.Windows.Forms.Button buttonAddCash;
-        private System.Windows.Forms.TextBox textBoxCash;
+        public System.Windows.Forms.TextBox textBoxCash;
         private System.Windows.Forms.CheckedListBox checkedListBoxServices;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Button buttonDeleteServices;
