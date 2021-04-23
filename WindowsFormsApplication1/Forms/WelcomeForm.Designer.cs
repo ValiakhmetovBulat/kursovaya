@@ -93,6 +93,7 @@
             this.checkedListBoxServices.Name = "checkedListBoxServices";
             this.checkedListBoxServices.Size = new System.Drawing.Size(493, 240);
             this.checkedListBoxServices.TabIndex = 4;
+            this.checkedListBoxServices.SelectedIndexChanged += new System.EventHandler(this.checkedListBoxServices_SelectedIndexChanged);
             // 
             // buttonDeleteServices
             // 
@@ -109,12 +110,13 @@
             // 
             this.buttonPayServices.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonPayServices.ForeColor = System.Drawing.Color.White;
-            this.buttonPayServices.Location = new System.Drawing.Point(321, 262);
+            this.buttonPayServices.Location = new System.Drawing.Point(310, 262);
             this.buttonPayServices.Name = "buttonPayServices";
             this.buttonPayServices.Size = new System.Drawing.Size(139, 30);
             this.buttonPayServices.TabIndex = 6;
             this.buttonPayServices.Text = "Оплатить";
             this.buttonPayServices.UseVisualStyleBackColor = true;
+            this.buttonPayServices.Click += new System.EventHandler(this.buttonPayServices_Click);
             // 
             // WelcomeForm
             // 

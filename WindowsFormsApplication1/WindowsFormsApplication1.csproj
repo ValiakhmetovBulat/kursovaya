@@ -73,6 +73,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\BookARoom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BookARoom.Designer.cs">
+      <DependentUpon>BookARoom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Client.cs" />
+    <Compile Include="Classes\Position.cs" />
     <Compile Include="Forms\Administration.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,6 +105,12 @@
     <Compile Include="Forms\PassRecovery.Designer.cs">
       <DependentUpon>PassRecovery.cs</DependentUpon>
     </Compile>
+    <Compile Include="Classes\Order.cs" />
+    <Compile Include="Migrations\202104231411074_Migr.cs" />
+    <Compile Include="Migrations\202104231411074_Migr.designer.cs">
+      <DependentUpon>202104231411074_Migr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Forms\Registration.cs">
@@ -111,7 +125,10 @@
     <Compile Include="Forms\PersonalData.Designer.cs">
       <DependentUpon>PersonalData.cs</DependentUpon>
     </Compile>
-    <Compile Include="User.cs" />
+    <Compile Include="Classes\Room.cs" />
+    <Compile Include="Classes\Service.cs" />
+    <Compile Include="Classes\Staff.cs" />
+    <Compile Include="Classes\User.cs" />
     <Compile Include="UserContext.cs" />
     <Compile Include="Forms\WelcomeForm.cs">
       <SubType>Form</SubType>
@@ -122,6 +139,9 @@
     <EmbeddedResource Include="Forms\Administration.resx">
       <DependentUpon>Administration.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BookARoom.resx">
+      <DependentUpon>BookARoom.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\CashAccount.resx">
       <DependentUpon>CashAccount.cs</DependentUpon>
     </EmbeddedResource>
@@ -130,6 +150,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\PassRecovery.resx">
       <DependentUpon>PassRecovery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104231411074_Migr.resx">
+      <DependentUpon>202104231411074_Migr.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

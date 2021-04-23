@@ -14,6 +14,8 @@ namespace WindowsFormsApplication1
     {
         public static WelcomeForm welcome;
         public static PersonalData pd;
+        public static User user = Main.user1;
+        
         public PersonalData()
         {
             InitializeComponent();
@@ -52,7 +54,13 @@ namespace WindowsFormsApplication1
             {
                 label13.Visible = true;
             }
-            MessageBox.Show("sfsdfsdfsdf");
+            using (UserContext db = new UserContext())
+            {
+                Client client1 = new Client(textBoxSurname.Text, textBoxName.Text, textBoxPerv.Text, dateOfBirth.Value, Convert.ToInt32(textBoxPS.Text), Convert.ToInt32(textBoxPN.Text), textBoxNumber.Text, user.Id);
+                db.Clients.Add(client1);
+                db.SaveChanges();
+            }
+            //MessageBox.Show("sfsdfsdfsdf");
             textBoxSurname.Text = null;
             textBoxName.Text = null;
             textBoxPerv.Text = null;

@@ -13,7 +13,7 @@ namespace WindowsFormsApplication1
     public partial class Main : Form
     {
         public static Main main;
-        
+        public static User user1;
         public Main()
         {
             InitializeComponent();
@@ -25,7 +25,27 @@ namespace WindowsFormsApplication1
             label4.Visible = false;
             label6.Visible = false;
 
+            //using (UserContext db = new UserContext())
+            //{
+            //    Room room = new Room("Стандарт одноместный", 5000);
+            //    db.Rooms.Add(room);
+            //    Room room1 = new Room("Полу-люкс одноместный", 10000);
+            //    db.Rooms.Add(room1);
+            //    Room room2 = new Room("Люкс одноместный", 15000);
+            //    db.Rooms.Add(room2);
+            //    db.SaveChanges();
+            //}
 
+            //using (UserContext db = new UserContext())
+            //{
+            //    Service service = new Service("Базовый", 0, "Бесплатный Wi-Fi; Бесплатный завтрак; Уборка номера; Пробуждение к определенному времени.");
+            //    db.Services.Add(service);
+            //    Service service1 = new Service("Оптимальный", 5000, "Базовый пакет услуг; Ремонт одежды и обуви, стирка и химчистка; Организация экскурсий; Вызов такси; Заказ услуг переводчиков, гидов.");
+            //    db.Services.Add(service1);
+            //    Service service2 = new Service("Премиальный", 10000, "Базовый пакет услуг; Оптимальный пакет услуг; Прокат автомобилей; Пользование бильярдной, спортивным залом и площадками; Пользование сауной, баней, бассейном; Доставка посылок в номер; Прокат различного инвентаря, бытовых приборов.");
+            //    db.Services.Add(service2);
+            //    db.SaveChanges();
+            //}
 
             //using (UserContext db = new UserContext())
             //{
@@ -117,7 +137,7 @@ namespace WindowsFormsApplication1
                     if (textBoxLogin.Text == user.Login && this.GetHashString(textBoxPassword.Text) == user.Password)
                         {
                             MessageBox.Show("Вход выполнен","Авторизация...");
-                            
+                            user1 = user;
                             main.Hide();
                             if (user.Role == "Admin")
                             {
