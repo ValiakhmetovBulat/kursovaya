@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Security.Cryptography;
+using WindowsFormsApplication1.Classes;
+
 namespace WindowsFormsApplication1
 {
     public partial class Main : Form
@@ -45,6 +47,15 @@ namespace WindowsFormsApplication1
             //    Service service2 = new Service("Премиальный", 10000, "Базовый пакет услуг; Оптимальный пакет услуг; Прокат автомобилей; Пользование бильярдной, спортивным залом и площадками; Пользование сауной, баней, бассейном; Доставка посылок в номер; Прокат различного инвентаря, бытовых приборов.");
             //    db.Services.Add(service2);
             //    db.SaveChanges();
+            //}
+
+            //using (UserContext db = new UserContext())
+            //{
+            //    Staff staff = new Staff("Пупин", "Альберт", "Викторович", Convert.ToDateTime(05/01/1996),1245, 124579, "45678945619", 1);
+            //}
+            //using (UserContext db = new UserContext())
+            //{
+            //    Position position = new Position("Менеджер", 15000);
             //}
 
             //using (UserContext db = new UserContext())
