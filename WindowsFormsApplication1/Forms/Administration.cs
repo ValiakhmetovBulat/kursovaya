@@ -89,7 +89,6 @@ namespace WindowsFormsApplication1
         private void buttonChange_Click(object sender, EventArgs e)
         {
             
-                
                 using (UserContext db = new UserContext())
                 {
                     /// USER
@@ -186,7 +185,7 @@ namespace WindowsFormsApplication1
                     }
                     db.SaveChanges();
                 }
-            
+          
 
 
 
@@ -223,12 +222,9 @@ namespace WindowsFormsApplication1
         }
         private void buttonDelete_Click(object sender, EventArgs e)
         {
+           
 
-
-
-            using (UserContext db = new UserContext())
-            {
-                if (comboBox1.SelectedItem != null)
+                using (UserContext db = new UserContext())
                 {
                     foreach (User user in db.Users)
                     {
@@ -237,9 +233,6 @@ namespace WindowsFormsApplication1
                             db.Users.Remove(user);
                         }
                     }
-                }
-                if (comboBox2.SelectedItem != null)
-                {
                     foreach (Client client in db.Clients)
                     {
                         if (UserLogin == comboBox2.SelectedItem.ToString())
@@ -247,9 +240,6 @@ namespace WindowsFormsApplication1
                             db.Clients.Remove(client);
                         }
                     }
-                }
-                if (comboBox3.SelectedItem != null)
-                {
                     foreach (Room room in db.Rooms)
                     {
                         if (room.category == comboBox3.SelectedItem.ToString())
@@ -257,9 +247,6 @@ namespace WindowsFormsApplication1
                             db.Rooms.Remove(room);
                         }
                     }
-                }
-                if (comboBox4.SelectedItem != null)
-                {
                     foreach (Service service in db.Services)
                     {
                         if (service.name == comboBox4.SelectedItem.ToString())
@@ -267,9 +254,6 @@ namespace WindowsFormsApplication1
                             db.Services.Remove(service);
                         }
                     }
-                }
-                if (comboBox6.SelectedItem != null)
-                {
                     foreach (Position position in db.Positions)
                     {
                         if (position.name == comboBox6.SelectedItem.ToString())
@@ -277,18 +261,16 @@ namespace WindowsFormsApplication1
                             db.Positions.Remove(position);
                         }
                     }
+                    db.SaveChanges();
                 }
-
-                db.SaveChanges();
+                comboBox1.SelectedItem = null;
+                comboBox2.SelectedItem = null;
+                comboBox3.SelectedItem = null;
+                comboBox4.SelectedItem = null;
+                comboBox5.SelectedItem = null;
+                comboBox6.SelectedItem = null;
             }
-            comboBox1.SelectedItem = null;
-            comboBox2.SelectedItem = null;
-            comboBox3.SelectedItem = null;
-            comboBox4.SelectedItem = null;
-            comboBox5.SelectedItem = null;
-            comboBox6.SelectedItem = null;
-
-
+            
         }
         private void Administration_FormClosed(object sender, FormClosedEventArgs e)
         {
