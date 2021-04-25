@@ -128,11 +128,21 @@ namespace WindowsFormsApplication1
         }
         public int totalPrice = 0;
         private void checkedListBoxServices_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        {            
+            
             totalPrice = 0;
-            foreach (Order order in orders)
+            if (checkedListBoxServices.CheckedItems.Count != 0)
+            {               
+                    for (int i = 0; i < checkedListBoxServices.CheckedItems.Count; i++)
+                    {
+                        totalPrice += orders[i].totalPrice;
+                        textBoxTotalPrice.Text = Convert.ToString(totalPrice);
+                    }                
+            }
+            else
             {
-                
+                totalPrice = 0;
+                textBoxTotalPrice.Text = "0";
             }
         }
 
@@ -146,6 +156,11 @@ namespace WindowsFormsApplication1
             {
                 MessageBox.Show("Пополните ваш счет", "Сообщение");
             }
+        }
+
+        private void buttonDeleteServices_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

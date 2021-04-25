@@ -36,6 +36,8 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.buttonDeleteServices = new System.Windows.Forms.Button();
             this.buttonPayServices = new System.Windows.Forms.Button();
+            this.textBoxTotalPrice = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // buttonBookARoom
@@ -99,18 +101,19 @@
             // 
             this.buttonDeleteServices.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonDeleteServices.ForeColor = System.Drawing.Color.White;
-            this.buttonDeleteServices.Location = new System.Drawing.Point(92, 262);
+            this.buttonDeleteServices.Location = new System.Drawing.Point(66, 262);
             this.buttonDeleteServices.Name = "buttonDeleteServices";
             this.buttonDeleteServices.Size = new System.Drawing.Size(139, 30);
             this.buttonDeleteServices.TabIndex = 5;
             this.buttonDeleteServices.Text = "Удалить";
             this.buttonDeleteServices.UseVisualStyleBackColor = true;
+            this.buttonDeleteServices.Click += new System.EventHandler(this.buttonDeleteServices_Click);
             // 
             // buttonPayServices
             // 
             this.buttonPayServices.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonPayServices.ForeColor = System.Drawing.Color.White;
-            this.buttonPayServices.Location = new System.Drawing.Point(310, 262);
+            this.buttonPayServices.Location = new System.Drawing.Point(321, 262);
             this.buttonPayServices.Name = "buttonPayServices";
             this.buttonPayServices.Size = new System.Drawing.Size(139, 30);
             this.buttonPayServices.TabIndex = 6;
@@ -118,12 +121,31 @@
             this.buttonPayServices.UseVisualStyleBackColor = true;
             this.buttonPayServices.Click += new System.EventHandler(this.buttonPayServices_Click);
             // 
+            // textBoxTotalPrice
+            // 
+            this.textBoxTotalPrice.Location = new System.Drawing.Point(531, 271);
+            this.textBoxTotalPrice.Name = "textBoxTotalPrice";
+            this.textBoxTotalPrice.Size = new System.Drawing.Size(100, 21);
+            this.textBoxTotalPrice.TabIndex = 7;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(528, 255);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(87, 13);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Итоговая сумма";
+            // 
             // WelcomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkSlateGray;
             this.ClientSize = new System.Drawing.Size(658, 301);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.textBoxTotalPrice);
             this.Controls.Add(this.buttonPayServices);
             this.Controls.Add(this.buttonDeleteServices);
             this.Controls.Add(this.checkedListBoxServices);
@@ -153,5 +175,7 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Button buttonDeleteServices;
         private System.Windows.Forms.Button buttonPayServices;
+        private System.Windows.Forms.TextBox textBoxTotalPrice;
+        private System.Windows.Forms.Label label1;
     }
 }

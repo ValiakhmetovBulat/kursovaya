@@ -88,55 +88,8 @@ namespace WindowsFormsApplication1
         public int count = 0;
         private void buttonChange_Click(object sender, EventArgs e)
         {
-            if (radioButton1.Checked) /////////////////// ПРОСМОТР
-            {
-                textBox1.Enabled = false;
-                textBox2.Enabled = false;
-                textBox3.Enabled = false;
-                textBox4.Enabled = false;
-                textBox5.Enabled = false;
-                textBox6.Enabled = false;
-                textBox7.Enabled = false;
-                textBox8.Enabled = false;
-                textBox9.Enabled = false;
-                textBox10.Enabled = false;
-                textBox11.Enabled = false;
-                textBox12.Enabled = false;
-                textBox13.Enabled = false;
-                textBox14.Enabled = false;
-                textBox15.Enabled = false;
-                textBox16.Enabled = false;
-                textBox17.Enabled = false;
-                textBox18.Enabled = false;
-                textBox19.Enabled = false;
-                textBox20.Enabled = false;
-                textBox21.Enabled = false;
-                textBox22.Enabled = false;
-            }
-            else if (radioButton2.Checked) ////////////// ИЗМЕНЕНИЕ
-            {
-                textBox1.Enabled = true;
-                textBox2.Enabled = true;
-                textBox3.Enabled = true;
-                textBox4.Enabled = true;
-                textBox5.Enabled = true;
-                textBox6.Enabled = true;
-                textBox7.Enabled = true;
-                textBox8.Enabled = true;
-                textBox9.Enabled = true;
-                textBox10.Enabled = true;
-                textBox11.Enabled = true;
-                textBox12.Enabled = true;
-                textBox13.Enabled = true;
-                textBox14.Enabled = true;
-                textBox15.Enabled = true;
-                textBox16.Enabled = true;
-                textBox17.Enabled = true;
-                textBox18.Enabled = true;
-                textBox19.Enabled = true;
-                textBox20.Enabled = true;
-                textBox21.Enabled = true;
-                textBox22.Enabled = true;
+            
+                
                 using (UserContext db = new UserContext())
                 {
                     /// USER
@@ -233,11 +186,7 @@ namespace WindowsFormsApplication1
                     }
                     db.SaveChanges();
                 }
-            }
-            else
-            {
-                MessageBox.Show("Ошибка", "Сообщение");
-            }
+            
 
 
 
@@ -274,30 +223,8 @@ namespace WindowsFormsApplication1
         }
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            if (radioButton3.Checked) //////////////// УДАЛЕНИЕ
-            {
-                textBox1.Enabled = false;
-                textBox2.Enabled = false;
-                textBox3.Enabled = false;
-                textBox4.Enabled = false;
-                textBox5.Enabled = false;
-                textBox6.Enabled = false;
-                textBox7.Enabled = false;
-                textBox8.Enabled = false;
-                textBox9.Enabled = false;
-                textBox10.Enabled = false;
-                textBox11.Enabled = false;
-                textBox12.Enabled = false;
-                textBox13.Enabled = false;
-                textBox14.Enabled = false;
-                textBox15.Enabled = false;
-                textBox16.Enabled = false;
-                textBox17.Enabled = false;
-                textBox18.Enabled = false;
-                textBox19.Enabled = false;
-                textBox20.Enabled = false;
-                textBox21.Enabled = false;
-                textBox22.Enabled = false;
+           
+                
 
                 using (UserContext db = new UserContext())
                 {
@@ -344,11 +271,8 @@ namespace WindowsFormsApplication1
                 comboBox4.SelectedItem = null;
                 comboBox5.SelectedItem = null;
                 comboBox6.SelectedItem = null;
-            }
-            else
-            {
-                MessageBox.Show("Ошибка", "Сообщение");
-            }
+            
+          
         }
         private void Administration_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -461,6 +385,82 @@ namespace WindowsFormsApplication1
             }
         }
 
-        
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            textBox1.Enabled = false;
+            textBox2.Enabled = false;
+            textBox3.Enabled = false;
+            textBox4.Enabled = false;
+            textBox5.Enabled = false;
+            textBox6.Enabled = false;
+            textBox7.Enabled = false;
+            textBox8.Enabled = false;
+            textBox9.Enabled = false;
+            textBox10.Enabled = false;
+            textBox11.Enabled = false;
+            textBox12.Enabled = false;
+            textBox13.Enabled = false;
+            textBox14.Enabled = false;
+            textBox15.Enabled = false;
+            textBox16.Enabled = false;
+            textBox17.Enabled = false;
+            textBox18.Enabled = false;
+            textBox19.Enabled = false;
+            textBox20.Enabled = false;
+            textBox21.Enabled = false;
+            textBox22.Enabled = false;
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            textBox1.Enabled = false;
+            textBox2.Enabled = false;
+            textBox3.Enabled = false;
+            textBox4.Enabled = false;
+            textBox5.Enabled = false;
+            textBox6.Enabled = false;
+            textBox7.Enabled = false;
+            textBox8.Enabled = false;
+            textBox9.Enabled = false;
+            textBox10.Enabled = false;
+            textBox11.Enabled = false;
+            textBox12.Enabled = false;
+            textBox13.Enabled = false;
+            textBox14.Enabled = false;
+            textBox15.Enabled = false;
+            textBox16.Enabled = false;
+            textBox17.Enabled = false;
+            textBox18.Enabled = false;
+            textBox19.Enabled = false;
+            textBox20.Enabled = false;
+            textBox21.Enabled = false;
+            textBox22.Enabled = false;
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            textBox1.Enabled = true;
+            textBox2.Enabled = true;
+            textBox3.Enabled = true;
+            textBox4.Enabled = true;
+            textBox5.Enabled = true;
+            textBox6.Enabled = true;
+            textBox7.Enabled = true;
+            textBox8.Enabled = true;
+            textBox9.Enabled = true;
+            textBox10.Enabled = true;
+            textBox11.Enabled = true;
+            textBox12.Enabled = true;
+            textBox13.Enabled = true;
+            textBox14.Enabled = true;
+            textBox15.Enabled = true;
+            textBox16.Enabled = true;
+            textBox17.Enabled = true;
+            textBox18.Enabled = true;
+            textBox19.Enabled = true;
+            textBox20.Enabled = true;
+            textBox21.Enabled = true;
+            textBox22.Enabled = true;
+        }
     }
 }
