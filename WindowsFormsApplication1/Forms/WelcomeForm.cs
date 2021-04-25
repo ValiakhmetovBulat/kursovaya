@@ -151,6 +151,7 @@ namespace WindowsFormsApplication1
             if (Convert.ToInt32(textBoxCash.Text) > totalPrice)
             {
                 textBoxCash.Text = Convert.ToString(Convert.ToInt32(textBoxCash.Text) - totalPrice);
+                
             }
             else
             {
