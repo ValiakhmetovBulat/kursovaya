@@ -33,6 +33,30 @@ namespace WindowsFormsApplication1
             comboBox4.KeyPress += (sender, e) => e.Handled = true;
             comboBox5.KeyPress += (sender, e) => e.Handled = true;
             comboBox6.KeyPress += (sender, e) => e.Handled = true;
+            textBox1.Enabled = false;
+            textBox2.Enabled = false;
+            textBox3.Enabled = false;
+            textBox4.Enabled = false;
+            textBox5.Enabled = false;
+            textBox6.Enabled = false;
+            textBox7.Enabled = false;
+            textBox8.Enabled = false;
+            textBox9.Enabled = false;
+            textBox10.Enabled = false;
+            textBox11.Enabled = false;
+            textBox12.Enabled = false;
+            textBox13.Enabled = false;
+            textBox14.Enabled = false;
+            textBox15.Enabled = false;
+            textBox16.Enabled = false;
+            textBox17.Enabled = false;
+            textBox18.Enabled = false;
+            textBox19.Enabled = false;
+            textBox20.Enabled = false;
+            textBox21.Enabled = false;
+            textBox22.Enabled = false;
+            dateTimePicker1.Enabled = false;
+            dateTimePicker2.Enabled = false;
         }
 
         private string GetHashString(string s)
@@ -91,6 +115,8 @@ namespace WindowsFormsApplication1
             
                 using (UserContext db = new UserContext())
                 {
+                if (comboBox1.SelectedItem != null)
+                {
                     /// USER
                     if (textBox1.Text != "")
                     {
@@ -107,6 +133,9 @@ namespace WindowsFormsApplication1
                         itemUser = db.Users.Find(UserKey);
                         itemUser.Email = textBox3.Text;
                     }
+                }
+                if (comboBox2.SelectedItem != null)
+                {
                     //// CLIENT
                     if (textBox4.Text != "")
                     {
@@ -143,6 +172,9 @@ namespace WindowsFormsApplication1
                         itemClient = db.Clients.Find(ClientKey);
                         itemClient.date_of_birth = dateTimePicker1.Value;
                     }
+                }
+                if (comboBox3.SelectedItem != null)
+                {
                     /// ROOM
                     if (textBox10.Text != "")
                     {
@@ -152,8 +184,11 @@ namespace WindowsFormsApplication1
                     if (textBox11.Text != "")
                     {
                         itemRoom = db.Rooms.Find(RoomKey);
-                        itemRoom.price= Convert.ToInt32(textBox11.Text);
+                        itemRoom.price = Convert.ToInt32(textBox11.Text);
                     }
+                }
+                if (comboBox4.SelectedItem != null)
+                {
                     /// SERVICE
                     if (textBox12.Text != "")
                     {
@@ -165,13 +200,17 @@ namespace WindowsFormsApplication1
                         itemService = db.Services.Find(ServiceKey);
                         itemService.price = Convert.ToInt32(textBox13.Text);
                     }
-                    if(richTextBox1.Text != "")
+                    if (richTextBox1.Text != "")
                     {
                         itemService = db.Services.Find(ServiceKey);
                         itemService.description = richTextBox1.Text;
                     }
-                    /// STAFF
-                    /// нулевой потому что там есть проблемы который я не хочу изменять(слишком лень и долго да и у меня не получится enable-migrations не работает...)
+                }
+
+                /// STAFF
+                /// нулевой потому что там есть проблемы который я не хочу изменять(слишком лень и долго да и у меня не получится enable-migrations не работает...)
+                if (comboBox4.SelectedItem != null)
+                {
                     /// Position
                     if (textBox21.Text != "")
                     {
@@ -183,6 +222,8 @@ namespace WindowsFormsApplication1
                         itemPosition = db.Positions.Find(PositionKey);
                         itemPosition.salary = Convert.ToInt32(textBox22.Text);
                     }
+                }
+                    
                     db.SaveChanges();
                 }
           
@@ -222,45 +263,65 @@ namespace WindowsFormsApplication1
         }
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-           
-
                 using (UserContext db = new UserContext())
+                {
+                if(comboBox1.SelectedItem != null)
                 {
                     foreach (User user in db.Users)
                     {
                         if (user.Login == comboBox1.SelectedItem.ToString())
                         {
                             db.Users.Remove(user);
+                            comboBox1.SelectedText = null;
                         }
                     }
+                }
+                if (comboBox2.SelectedItem != null)
+                {
                     foreach (Client client in db.Clients)
                     {
                         if (UserLogin == comboBox2.SelectedItem.ToString())
                         {
                             db.Clients.Remove(client);
+                            comboBox2.SelectedText = null;
                         }
                     }
+                    
+                }
+                if (comboBox3.SelectedItem != null)
+                {
                     foreach (Room room in db.Rooms)
                     {
                         if (room.category == comboBox3.SelectedItem.ToString())
                         {
                             db.Rooms.Remove(room);
+                            comboBox3.SelectedText = null;
                         }
                     }
+                }
+                if (comboBox4.SelectedItem != null)
+                {
                     foreach (Service service in db.Services)
                     {
                         if (service.name == comboBox4.SelectedItem.ToString())
                         {
                             db.Services.Remove(service);
+                            comboBox4.SelectedText = null;
                         }
                     }
+                }
+                if (comboBox6.SelectedItem != null)
+                {
                     foreach (Position position in db.Positions)
                     {
                         if (position.name == comboBox6.SelectedItem.ToString())
                         {
                             db.Positions.Remove(position);
+                            comboBox6.SelectedText = null;
                         }
                     }
+                }
+                   
                     db.SaveChanges();
                 }
                 comboBox1.SelectedItem = null;
@@ -269,8 +330,6 @@ namespace WindowsFormsApplication1
                 comboBox4.SelectedItem = null;
                 comboBox5.SelectedItem = null;
                 comboBox6.SelectedItem = null;
-            
-            
         }
         private void Administration_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -289,6 +348,12 @@ namespace WindowsFormsApplication1
                         textBox1.Text = user.Login;
                         textBox2.Text = user.Password;
                         textBox3.Text = user.Email;
+                    }
+                    else
+                    {
+                        textBox1.Text = null;
+                        textBox2.Text = null;
+                        textBox3.Text = null;
                     }
                 }
             }
@@ -310,6 +375,15 @@ namespace WindowsFormsApplication1
                         textBox9.Text = client.phone;
                         dateTimePicker1.Value = client.date_of_birth;
                     }
+                    else
+                    {
+                        textBox4.Text = null;
+                        textBox5.Text = null;
+                        textBox6.Text = null;
+                        textBox7.Text = null;
+                        textBox8.Text = null;
+                        textBox9.Text = null;
+                    }
                 }
             }
         }
@@ -326,6 +400,12 @@ namespace WindowsFormsApplication1
                         textBox10.Text = room.category;
                         textBox11.Text = Convert.ToString(room.price);
                     }
+                    else
+                    {
+                        textBox10.Text = null;
+                        textBox11.Text = null;
+                        
+                    }
                 }
             }
         }
@@ -341,6 +421,12 @@ namespace WindowsFormsApplication1
                         ServiceKey = service.id;
                         textBox12.Text = service.name;
                         textBox13.Text = Convert.ToString(service.price);
+                    }
+                    else
+                    {
+                        textBox12.Text = null;
+                        textBox13.Text = null;
+                        
                     }
                 }
             }
@@ -378,6 +464,12 @@ namespace WindowsFormsApplication1
                         PositionKey = position.id;
                         textBox21.Text = position.name;
                         textBox22.Text = Convert.ToString(position.salary);
+                    }
+                    else
+                    {
+                        textBox21.Text = null;
+                        textBox22.Text = null;
+                        
                     }
                 }
             }
