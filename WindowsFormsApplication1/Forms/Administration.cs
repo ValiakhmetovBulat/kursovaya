@@ -269,7 +269,7 @@ namespace WindowsFormsApplication1
                 comboBox4.SelectedItem = null;
                 comboBox5.SelectedItem = null;
                 comboBox6.SelectedItem = null;
-            }
+            
             
         }
         private void Administration_FormClosed(object sender, FormClosedEventArgs e)
