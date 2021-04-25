@@ -14,6 +14,7 @@ namespace WindowsFormsApplication1
 {
     public partial class Main : Form
     {
+
         public static Main main;
         public static User user1;
         public Main()
@@ -60,9 +61,8 @@ namespace WindowsFormsApplication1
 
             //using (UserContext db = new UserContext())
             //{
-            //    int key = 8;
-            //    var item = db.Users.Find(key);
-            //    item.Role = "Admin";
+            //    User user = new User("admin", GetHashString("admin"), "valiaxmetovb135@gmail.com", "Admin");
+            //    db.Users.Add(user);
             //    db.SaveChanges();
             //}
         }
@@ -224,6 +224,49 @@ namespace WindowsFormsApplication1
         private void label6_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void textBoxPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                if (textBoxLogin.Text == "")
+                {
+                    label3.Visible = true;
+                }
+                if (textBoxPassword.Text == "")
+                {
+                    label4.Visible = true;
+                }
+                if (textBoxLogin.Text != null && textBoxPassword.Text != null)
+                {
+                    using (UserContext db = new UserContext())
+                    {
+                        foreach (User user in db.Users)
+                        {
+
+                            if (textBoxLogin.Text == user.Login && this.GetHashString(textBoxPassword.Text) == user.Password)
+                            {
+                                MessageBox.Show("Вход выполнен", "Авторизация...");
+                                user1 = user;
+                                main.Hide();
+                                if (user.Role == "Admin")
+                                {
+                                    Administration administration = new Administration();
+                                    administration.Show();
+                                }
+                                else
+                                {
+                                    WelcomeForm welcomeform = new WelcomeForm();
+                                    welcomeform.Show();
+                                }
+                                return;
+                            }
+                        }
+                        label6.Visible = true;
+                    }
+                }
+            }
         }
     }
 }

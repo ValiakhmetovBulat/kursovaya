@@ -47,7 +47,7 @@ namespace WindowsFormsApplication1
             }
             return hash;
         }
-
+        public User user1;
         private void Administration_Load(object sender, EventArgs e)
         {
             using (UserContext db = new UserContext())
@@ -58,11 +58,8 @@ namespace WindowsFormsApplication1
                 }
                 foreach (Client client in db.Clients)
                 {
-                    if (Main.user1.Id == client.userId)
-                    {
-                        UserLogin = Main.user1.Login;
-                        comboBox2.Items.Add(UserLogin);
-                    }
+                    user1 = db.Users.Find(client.userId);
+                    comboBox2.Items.Add(user1.Login);                    
                 }
                 foreach (Room room in db.Rooms)
                 {
@@ -380,7 +377,7 @@ namespace WindowsFormsApplication1
             {
                 foreach (Client client in db.Clients)
                 {
-                    if (UserLogin == comboBox2.SelectedItem.ToString())
+                    if (user1.Login == comboBox2.SelectedItem.ToString())
                     {
                         ClientKey = client.id;
                         textBox4.Text = client.surname;
