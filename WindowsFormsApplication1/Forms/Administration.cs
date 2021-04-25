@@ -88,55 +88,6 @@ namespace WindowsFormsApplication1
         public int count = 0;
         private void buttonChange_Click(object sender, EventArgs e)
         {
-            if (radioButton1.Checked) /////////////////// ПРОСМОТР
-            {
-                textBox1.Enabled = false;
-                textBox2.Enabled = false;
-                textBox3.Enabled = false;
-                textBox4.Enabled = false;
-                textBox5.Enabled = false;
-                textBox6.Enabled = false;
-                textBox7.Enabled = false;
-                textBox8.Enabled = false;
-                textBox9.Enabled = false;
-                textBox10.Enabled = false;
-                textBox11.Enabled = false;
-                textBox12.Enabled = false;
-                textBox13.Enabled = false;
-                textBox14.Enabled = false;
-                textBox15.Enabled = false;
-                textBox16.Enabled = false;
-                textBox17.Enabled = false;
-                textBox18.Enabled = false;
-                textBox19.Enabled = false;
-                textBox20.Enabled = false;
-                textBox21.Enabled = false;
-                textBox22.Enabled = false;
-            }
-            else if (radioButton2.Checked) ////////////// ИЗМЕНЕНИЕ
-            {
-                textBox1.Enabled = true;
-                textBox2.Enabled = true;
-                textBox3.Enabled = true;
-                textBox4.Enabled = true;
-                textBox5.Enabled = true;
-                textBox6.Enabled = true;
-                textBox7.Enabled = true;
-                textBox8.Enabled = true;
-                textBox9.Enabled = true;
-                textBox10.Enabled = true;
-                textBox11.Enabled = true;
-                textBox12.Enabled = true;
-                textBox13.Enabled = true;
-                textBox14.Enabled = true;
-                textBox15.Enabled = true;
-                textBox16.Enabled = true;
-                textBox17.Enabled = true;
-                textBox18.Enabled = true;
-                textBox19.Enabled = true;
-                textBox20.Enabled = true;
-                textBox21.Enabled = true;
-                textBox22.Enabled = true;
                 using (UserContext db = new UserContext())
                 {
                     /// USER
@@ -238,9 +189,6 @@ namespace WindowsFormsApplication1
             {
                 MessageBox.Show("Ошибка", "Сообщение");
             }
-
-
-
             //foreach (User user in db.Users)
             //{
             //    if (user.Email == textBox3.Text)
@@ -274,68 +222,59 @@ namespace WindowsFormsApplication1
         }
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            if (radioButton3.Checked) //////////////// УДАЛЕНИЕ
-            {
-                textBox1.Enabled = false;
-                textBox2.Enabled = false;
-                textBox3.Enabled = false;
-                textBox4.Enabled = false;
-                textBox5.Enabled = false;
-                textBox6.Enabled = false;
-                textBox7.Enabled = false;
-                textBox8.Enabled = false;
-                textBox9.Enabled = false;
-                textBox10.Enabled = false;
-                textBox11.Enabled = false;
-                textBox12.Enabled = false;
-                textBox13.Enabled = false;
-                textBox14.Enabled = false;
-                textBox15.Enabled = false;
-                textBox16.Enabled = false;
-                textBox17.Enabled = false;
-                textBox18.Enabled = false;
-                textBox19.Enabled = false;
-                textBox20.Enabled = false;
-                textBox21.Enabled = false;
-                textBox22.Enabled = false;
-
                 using (UserContext db = new UserContext())
                 {
-                    foreach (User user in db.Users)
+                    if(comboBox1.SelectedItem != null)
                     {
-                        if (user.Login == comboBox1.SelectedItem.ToString())
+                        foreach (User user in db.Users)
                         {
-                            db.Users.Remove(user);
+                            if (user.Login == comboBox1.SelectedItem.ToString())
+                            {
+                                db.Users.Remove(user);
+                            }
                         }
                     }
-                    foreach (Client client in db.Clients)
+                    if(comboBox2.SelectedItem != null)
                     {
-                        if (UserLogin == comboBox2.SelectedItem.ToString())
+                        foreach (Client client in db.Clients)
                         {
-                            db.Clients.Remove(client);
+                            if (UserLogin == comboBox2.SelectedItem.ToString())
+                            {
+                                db.Clients.Remove(client);
+                            }
                         }
                     }
-                    foreach (Room room in db.Rooms)
+                    if(comboBox3.SelectedItem != null)
                     {
-                        if (room.category == comboBox3.SelectedItem.ToString())
+                        foreach (Room room in db.Rooms)
                         {
-                            db.Rooms.Remove(room);
+                            if (room.category == comboBox3.SelectedItem.ToString())
+                            {
+                                db.Rooms.Remove(room);
+                            }
                         }
                     }
-                    foreach (Service service in db.Services)
+                    if(comboBox4.SelectedItem != null)
                     {
-                        if (service.name == comboBox4.SelectedItem.ToString())
+                        foreach (Service service in db.Services)
                         {
-                            db.Services.Remove(service);
+                            if (service.name == comboBox4.SelectedItem.ToString())
+                            {
+                                db.Services.Remove(service);
+                            }
                         }
                     }
-                    foreach (Position position in db.Positions)
+                    if(comboBox6.SelectedItem != null)
                     {
-                        if (position.name == comboBox6.SelectedItem.ToString())
+                        foreach (Position position in db.Positions)
                         {
-                            db.Positions.Remove(position);
+                            if (position.name == comboBox6.SelectedItem.ToString())
+                            {
+                                db.Positions.Remove(position);
+                            }
                         }
                     }
+                    
                     db.SaveChanges();
                 }
                 comboBox1.SelectedItem = null;
@@ -344,11 +283,6 @@ namespace WindowsFormsApplication1
                 comboBox4.SelectedItem = null;
                 comboBox5.SelectedItem = null;
                 comboBox6.SelectedItem = null;
-            }
-            else
-            {
-                MessageBox.Show("Ошибка", "Сообщение");
-            }
         }
         private void Administration_FormClosed(object sender, FormClosedEventArgs e)
         {
