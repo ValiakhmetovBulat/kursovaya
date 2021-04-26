@@ -119,7 +119,7 @@ namespace WindowsFormsApplication1
                 }
                 else
                 {
-                    MessageBox.Show("уже забито)");
+                   
                     BookARoom bookARoom = new BookARoom();
                     bookARoom.Show();
                     welcome.Hide();

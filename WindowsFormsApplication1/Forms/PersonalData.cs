@@ -59,6 +59,8 @@ namespace WindowsFormsApplication1
                 Client client1 = new Client(textBoxSurname.Text, textBoxName.Text, textBoxPerv.Text, dateOfBirth.Value, Convert.ToInt32(textBoxPS.Text), Convert.ToInt32(textBoxPN.Text), textBoxNumber.Text, user.Id);
                 db.Clients.Add(client1);
                 db.SaveChanges();
+                
+                this.Close();
             }
             //MessageBox.Show("sfsdfsdfsdf");
             textBoxSurname.Text = null;
@@ -143,6 +145,11 @@ namespace WindowsFormsApplication1
             {
                 e.Handled = true;
             }
+        }
+
+        private void PersonalData_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -58,7 +58,8 @@ namespace WindowsFormsApplication1.Classes
                     Order order = new Order(dateOfArriving.Value, dateOfLeaving.Value, ClientKey, RoomKey, ServiceKey, Convert.ToInt32(textBoxTotalPrice.Text), false);
                     db.Orders.Add(order);
                     db.SaveChanges();
-                    welcome.Show();
+                    WelcomeForm welcomeForm = new WelcomeForm();
+                    welcomeForm.Show();
                     bookARoom.Hide();
                 }
                 else

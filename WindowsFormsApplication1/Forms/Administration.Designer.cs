@@ -41,7 +41,6 @@
             this.label24 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.textBox19 = new System.Windows.Forms.TextBox();
-            this.textBox20 = new System.Windows.Forms.TextBox();
             this.textBox18 = new System.Windows.Forms.TextBox();
             this.textBox17 = new System.Windows.Forms.TextBox();
             this.textBox16 = new System.Windows.Forms.TextBox();
@@ -99,6 +98,9 @@
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.comboBox7 = new System.Windows.Forms.ComboBox();
+            this.buttonRefresh = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.tabPage6.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.tabPage4.SuspendLayout();
@@ -200,10 +202,10 @@
             // tabPage5
             // 
             this.tabPage5.BackColor = System.Drawing.Color.Pink;
+            this.tabPage5.Controls.Add(this.comboBox7);
             this.tabPage5.Controls.Add(this.label24);
             this.tabPage5.Controls.Add(this.label25);
             this.tabPage5.Controls.Add(this.textBox19);
-            this.tabPage5.Controls.Add(this.textBox20);
             this.tabPage5.Controls.Add(this.textBox18);
             this.tabPage5.Controls.Add(this.textBox17);
             this.tabPage5.Controls.Add(this.textBox16);
@@ -247,13 +249,6 @@
             this.textBox19.Name = "textBox19";
             this.textBox19.Size = new System.Drawing.Size(138, 21);
             this.textBox19.TabIndex = 39;
-            // 
-            // textBox20
-            // 
-            this.textBox20.Location = new System.Drawing.Point(82, 325);
-            this.textBox20.Name = "textBox20";
-            this.textBox20.Size = new System.Drawing.Size(138, 21);
-            this.textBox20.TabIndex = 53;
             // 
             // textBox18
             // 
@@ -783,12 +778,45 @@
             this.tabControl1.Size = new System.Drawing.Size(319, 387);
             this.tabControl1.TabIndex = 61;
             // 
+            // comboBox7
+            // 
+            this.comboBox7.FormattingEnabled = true;
+            this.comboBox7.Location = new System.Drawing.Point(82, 325);
+            this.comboBox7.Name = "comboBox7";
+            this.comboBox7.Size = new System.Drawing.Size(138, 21);
+            this.comboBox7.TabIndex = 55;
+            // 
+            // buttonRefresh
+            // 
+            this.buttonRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonRefresh.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonRefresh.Location = new System.Drawing.Point(498, 90);
+            this.buttonRefresh.Name = "buttonRefresh";
+            this.buttonRefresh.Size = new System.Drawing.Size(25, 37);
+            this.buttonRefresh.TabIndex = 62;
+            this.buttonRefresh.Text = "⭯";
+            this.buttonRefresh.UseVisualStyleBackColor = true;
+            this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
+            // 
+            // button1
+            // 
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Location = new System.Drawing.Point(547, 373);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 63;
+            this.button1.Text = "Вернуться";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Administration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Pink;
-            this.ClientSize = new System.Drawing.Size(634, 412);
+            this.ClientSize = new System.Drawing.Size(634, 404);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.buttonRefresh);
             this.Controls.Add(this.radioButton3);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.buttonDelete);
@@ -796,12 +824,13 @@
             this.Controls.Add(this.radioButton2);
             this.Controls.Add(this.radioButton1);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Administration";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "admin";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Administration_FormClosed);
             this.Load += new System.EventHandler(this.Administration_Load);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Administration_MouseDown);
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
             this.tabPage5.ResumeLayout(false);
@@ -834,7 +863,6 @@
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.TextBox textBox19;
-        private System.Windows.Forms.TextBox textBox20;
         private System.Windows.Forms.TextBox textBox18;
         private System.Windows.Forms.TextBox textBox17;
         private System.Windows.Forms.TextBox textBox16;
@@ -892,5 +920,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.ComboBox comboBox7;
+        private System.Windows.Forms.Button buttonRefresh;
+        private System.Windows.Forms.Button button1;
     }
 }

@@ -52,11 +52,19 @@ namespace WindowsFormsApplication1
 
             //using (UserContext db = new UserContext())
             //{
-            //    Staff staff = new Staff("Пупин", "Альберт", "Викторович", Convert.ToDateTime(05/01/1996),1245, 124579, "45678945619", 1);
+            //    Staff staff = new Staff("Пупин", "Альберт", "Викторович", Convert.ToDateTime("05/01/1996"), 1245, 124579, "45678945619", 1);
+            //    db.Staff.Add(staff);
+            //    db.SaveChanges();
             //}
             //using (UserContext db = new UserContext())
             //{
-            //    Position position = new Position("Менеджер", 15000);
+            //    Position position = new Position("Администратор", 50000);
+            //    Position position1 = new Position("Менеджер", 15000);
+            //    Position position2 = new Position("Горничная", 20000);
+            //    db.Positions.Add(position);
+            //    db.Positions.Add(position2);
+            //    db.Positions.Add(position1);
+            //    db.SaveChanges();
             //}
 
             //using (UserContext db = new UserContext())

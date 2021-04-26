@@ -81,6 +81,7 @@ namespace WindowsFormsApplication1.Classes
             // 
             // comboBoxRooms
             // 
+            this.comboBoxRooms.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxRooms.FormattingEnabled = true;
             this.comboBoxRooms.Location = new System.Drawing.Point(44, 28);
             this.comboBoxRooms.Name = "comboBoxRooms";
@@ -104,11 +105,13 @@ namespace WindowsFormsApplication1.Classes
             // 
             this.textBoxPriceOfRooms.Location = new System.Drawing.Point(417, 29);
             this.textBoxPriceOfRooms.Name = "textBoxPriceOfRooms";
+            this.textBoxPriceOfRooms.ReadOnly = true;
             this.textBoxPriceOfRooms.Size = new System.Drawing.Size(235, 20);
             this.textBoxPriceOfRooms.TabIndex = 22;
             // 
             // comboBoxServices
             // 
+            this.comboBoxServices.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxServices.FormattingEnabled = true;
             this.comboBoxServices.Location = new System.Drawing.Point(44, 78);
             this.comboBoxServices.Name = "comboBoxServices";
@@ -120,6 +123,7 @@ namespace WindowsFormsApplication1.Classes
             // 
             this.textBoxTotalPrice.Location = new System.Drawing.Point(44, 221);
             this.textBoxTotalPrice.Name = "textBoxTotalPrice";
+            this.textBoxTotalPrice.ReadOnly = true;
             this.textBoxTotalPrice.Size = new System.Drawing.Size(147, 20);
             this.textBoxTotalPrice.TabIndex = 25;
             // 
@@ -137,6 +141,7 @@ namespace WindowsFormsApplication1.Classes
             // 
             this.richTextBoxPriceOfServices.Location = new System.Drawing.Point(44, 105);
             this.richTextBoxPriceOfServices.Name = "richTextBoxPriceOfServices";
+            this.richTextBoxPriceOfServices.ReadOnly = true;
             this.richTextBoxPriceOfServices.Size = new System.Drawing.Size(244, 78);
             this.richTextBoxPriceOfServices.TabIndex = 27;
             this.richTextBoxPriceOfServices.Text = "";

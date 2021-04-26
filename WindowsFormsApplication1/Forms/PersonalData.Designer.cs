@@ -302,6 +302,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Персональные данные";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PersonalData_FormClosed);
+            this.Load += new System.EventHandler(this.PersonalData_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
