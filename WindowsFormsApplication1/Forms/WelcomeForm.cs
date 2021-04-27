@@ -17,6 +17,7 @@ namespace WindowsFormsApplication1
     {
         public static WelcomeForm welcome;
         public static User user = Main.user1;
+        
         public static Client client1;
         public int RoomKey = 0;
         public int ServiceKey = 0;
@@ -37,7 +38,7 @@ namespace WindowsFormsApplication1
         {
             checkedListBoxServices.Items.Clear();
             textBoxCash.Text = "0";
-
+            bool trg = true;
             using (UserContext db = new UserContext())
             {
                 foreach (Client client in db.Clients)
@@ -45,13 +46,22 @@ namespace WindowsFormsApplication1
                     if (Main.user1.Id == client.userId)
                     {
                         client1 = client;
+                        trg = true;
+                        break;
+                    }
+                    else
+                    {
+                        trg = false;
                     }
                 }
-                foreach (Order order1 in db.Orders)
+                if (trg)
                 {
-                    if (client1.id == order1.clientId)
+                    foreach (Order order1 in db.Orders)
                     {
-                        orders.Add(order1);
+                        if (client1.id == order1.clientId)
+                        {
+                            orders.Add(order1);
+                        }
                     }
                 }
                 
@@ -84,7 +94,9 @@ namespace WindowsFormsApplication1
 
         private void WelcomeForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Application.Exit();
+            
+            Main.main.Show();
+            welcome.Hide();
             //MessageBox.Show("Выберите один из вариантов","Сообщение",MessageBoxButtons.YesNo,MessageBoxIcon.Information,MessageBoxDefaultButton.Button1,MessageBoxOptions.DefaultDesktopOnly);
         }
 
