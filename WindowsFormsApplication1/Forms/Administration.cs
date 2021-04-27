@@ -333,9 +333,19 @@ namespace WindowsFormsApplication1
                 }
                 if (comboBox2.SelectedItem != null && tabControl1.SelectedTab == tabControl1.TabPages[1])
                 {
+                    foreach (User user in db.Users)
+                    {
+                        if (user.Login == comboBox2.SelectedItem.ToString())
+                        {
+                            user1 = user;
+                        } 
+                    }
+
                     foreach (Client client in db.Clients)
                     {
-                        if (UserLogin == comboBox2.SelectedItem.ToString())
+                        
+
+                        if (user1.Login == comboBox2.SelectedItem.ToString())
                         {
                             db.Clients.Remove(client);
                             
@@ -343,7 +353,19 @@ namespace WindowsFormsApplication1
                             break;
                         }
                     }
-                    
+
+                    //if (comboBox7.SelectedItem != null)
+                    //{
+                    //    foreach (Position position in db.Positions)
+                    //    {
+                    //        if (position.name == comboBox7.Text)
+                    //        {
+                    //            itemStaff.positionId = position.id;
+                    //            break;
+                    //        }
+                    //    }
+                    //}
+
                 }
                 if (comboBox3.SelectedItem != null && tabControl1.SelectedTab == tabControl1.TabPages[2])
                 {
@@ -377,6 +399,7 @@ namespace WindowsFormsApplication1
                         {
                             db.Staff.Remove(staff);
                             comboBox5.Items.Clear();
+                            comboBox5.SelectedItem = null;
                             _formRefresh(4);
                             break;
                         }
