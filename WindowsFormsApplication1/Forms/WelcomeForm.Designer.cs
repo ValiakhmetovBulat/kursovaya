@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.buttonBookARoom = new System.Windows.Forms.Button();
-            this.buttonExtraService = new System.Windows.Forms.Button();
             this.buttonAddCash = new System.Windows.Forms.Button();
             this.textBoxCash = new System.Windows.Forms.TextBox();
             this.checkedListBoxServices = new System.Windows.Forms.CheckedListBox();
@@ -38,31 +37,20 @@
             this.buttonPayServices = new System.Windows.Forms.Button();
             this.textBoxTotalPrice = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.buttonHistory = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonBookARoom
             // 
             this.buttonBookARoom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonBookARoom.ForeColor = System.Drawing.Color.White;
-            this.buttonBookARoom.Location = new System.Drawing.Point(511, 167);
+            this.buttonBookARoom.Location = new System.Drawing.Point(511, 130);
             this.buttonBookARoom.Name = "buttonBookARoom";
             this.buttonBookARoom.Size = new System.Drawing.Size(139, 40);
             this.buttonBookARoom.TabIndex = 0;
             this.buttonBookARoom.Text = "Забронировать номер";
             this.buttonBookARoom.UseVisualStyleBackColor = true;
             this.buttonBookARoom.Click += new System.EventHandler(this.buttonBookARoom_Click);
-            // 
-            // buttonExtraService
-            // 
-            this.buttonExtraService.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonExtraService.ForeColor = System.Drawing.Color.White;
-            this.buttonExtraService.Location = new System.Drawing.Point(511, 121);
-            this.buttonExtraService.Name = "buttonExtraService";
-            this.buttonExtraService.Size = new System.Drawing.Size(139, 40);
-            this.buttonExtraService.TabIndex = 1;
-            this.buttonExtraService.Text = "Дополнительные услуги";
-            this.buttonExtraService.UseVisualStyleBackColor = true;
-            this.buttonExtraService.Click += new System.EventHandler(this.button1_Click);
             // 
             // buttonAddCash
             // 
@@ -138,12 +126,26 @@
             this.label1.TabIndex = 8;
             this.label1.Text = "Итоговая сумма";
             // 
+            // buttonHistory
+            // 
+            this.buttonHistory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonHistory.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonHistory.ForeColor = System.Drawing.Color.White;
+            this.buttonHistory.Location = new System.Drawing.Point(12, 255);
+            this.buttonHistory.Name = "buttonHistory";
+            this.buttonHistory.Size = new System.Drawing.Size(37, 37);
+            this.buttonHistory.TabIndex = 9;
+            this.buttonHistory.Text = "📝";
+            this.buttonHistory.UseVisualStyleBackColor = true;
+            this.buttonHistory.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // WelcomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkSlateGray;
             this.ClientSize = new System.Drawing.Size(658, 301);
+            this.Controls.Add(this.buttonHistory);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxTotalPrice);
             this.Controls.Add(this.buttonPayServices);
@@ -151,7 +153,6 @@
             this.Controls.Add(this.checkedListBoxServices);
             this.Controls.Add(this.textBoxCash);
             this.Controls.Add(this.buttonAddCash);
-            this.Controls.Add(this.buttonExtraService);
             this.Controls.Add(this.buttonBookARoom);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
@@ -168,7 +169,6 @@
         #endregion
 
         private System.Windows.Forms.Button buttonBookARoom;
-        private System.Windows.Forms.Button buttonExtraService;
         private System.Windows.Forms.Button buttonAddCash;
         public System.Windows.Forms.TextBox textBoxCash;
         private System.Windows.Forms.CheckedListBox checkedListBoxServices;
@@ -177,5 +177,6 @@
         private System.Windows.Forms.Button buttonPayServices;
         private System.Windows.Forms.TextBox textBoxTotalPrice;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button buttonHistory;
     }
 }

@@ -14,14 +14,16 @@ public  class User
     public string Password { get; set; }
     public string Email { get; set; }
     public string Role { get; set; }
+    public int sum { get; set; }
     public User()
     { }
-    public User(string Login, string Password, string Email, string Role)
+    public User(string Login, string Password, string Email, string Role, int sum)
     {
     this.Login = Login;
     this.Password = Password;
     this.Role = Role;
     this.Email = Email;
+    this.sum = sum;
     }
 
     }

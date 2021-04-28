@@ -15,7 +15,7 @@ namespace WindowsFormsApplication1
     
     public partial class WelcomeForm : Form
     {
-        public static WelcomeForm welcome;
+       
         public static User user = Main.user1;
         
         public static Client client1;
@@ -28,19 +28,17 @@ namespace WindowsFormsApplication1
         public WelcomeForm()
         {
             InitializeComponent();
-            welcome = this;
-            CashAccount.welcome = this;
-            PersonalData.welcome = this;
-            BookARoom.welcome = this;
+           
         }
 
         private void WelcomeForm_Load(object sender, EventArgs e)
         {
             checkedListBoxServices.Items.Clear();
-            textBoxCash.Text = "0";
+            
             bool trg = true;
             using (UserContext db = new UserContext())
             {
+                textBoxCash.Text = user.sum.ToString();
                 foreach (Client client in db.Clients)
                 {
                     if (Main.user1.Id == client.userId)
@@ -67,7 +65,7 @@ namespace WindowsFormsApplication1
                 
                 foreach (Order order in orders)
                 {
-                    if (!order.isPaid)
+                    if (!order.isPaid && !order.isDeleted)
                     {
                         RoomKey = order.roomId;
                         ServiceKey = order.serviceId;
@@ -86,7 +84,7 @@ namespace WindowsFormsApplication1
                                 ServiceName = service.name;
                             }
                         }
-                        checkedListBoxServices.Items.Add("Комната типа: " + RoomName + " с пакетом услуг " + ServiceName + ". Стоимость: " + Convert.ToString(TotalPrice));
+                        checkedListBoxServices.Items.Add("[" + order.id + "] Комната типа: " + RoomName + " с пакетом услуг " + ServiceName + ". Стоимость: " + Convert.ToString(TotalPrice));
                     }
                 }
             }
@@ -94,9 +92,8 @@ namespace WindowsFormsApplication1
 
         private void WelcomeForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            
             Main.main.Show();
-            welcome.Hide();
+            
             //MessageBox.Show("Выберите один из вариантов","Сообщение",MessageBoxButtons.YesNo,MessageBoxIcon.Information,MessageBoxDefaultButton.Button1,MessageBoxOptions.DefaultDesktopOnly);
         }
 
@@ -109,7 +106,7 @@ namespace WindowsFormsApplication1
         {
             CashAccount CashAcc = new CashAccount();
             CashAcc.Show();
-            welcome.Hide();
+            this.Close();
         }
         public bool IsCreated = false;
         private void buttonBookARoom_Click(object sender, EventArgs e)
@@ -127,14 +124,14 @@ namespace WindowsFormsApplication1
                 {
                     PersonalData pd = new PersonalData();
                     pd.Show();
-                    welcome.Hide();
+                    this.Hide();
                 }
                 else
                 {
                    
                     BookARoom bookARoom = new BookARoom();
                     bookARoom.Show();
-                    welcome.Hide();
+                    this.Hide();
                 }
             }
         }
@@ -156,24 +153,99 @@ namespace WindowsFormsApplication1
                 totalPrice = 0;
                 textBoxTotalPrice.Text = "0";
             }
+
+            //         ---неудачная попытка построения логики---
+            //foreach (string checkedItem in checkedListBoxServices.Items)
+            //{
+            //    for (int i = 0; i < orders.Count; i++)
+            //    {
+            //        if (checkedItem[1] == Convert.ToChar(orders[i].id))
+            //        {
+            //            totalPrice += orders[i].totalPrice;
+            //            textBoxTotalPrice.Text = totalPrice.ToString();
+            //        }
+            //    }
+            //}
+
         }
 
         private void buttonPayServices_Click(object sender, EventArgs e)
         {
-            if (Convert.ToInt32(textBoxCash.Text) > totalPrice)
+            
+            using (UserContext db = new UserContext())
             {
-                textBoxCash.Text = Convert.ToString(Convert.ToInt32(textBoxCash.Text) - totalPrice);
-                
-            }
-            else
-            {
-                MessageBox.Show("Пополните ваш счет", "Сообщение");
+                if (Convert.ToInt32(textBoxCash.Text) > totalPrice)
+                {
+                    user.sum -= totalPrice;
+                    textBoxCash.Text = user.sum.ToString();
+
+                    for (int i = 0; i < checkedListBoxServices.CheckedItems.Count; i++)
+                    {
+                        int count = 1;
+                        string checkedOrder = checkedListBoxServices.CheckedItems[i].ToString();
+                        string orderId = "";
+                        while(checkedOrder[count] != ']')
+                        {
+                            orderId += checkedOrder[count];
+                            count++;
+                        }
+                        MessageBox.Show(orderId);
+                        foreach (Order order in db.Orders)
+                        {
+                            if (order.id == Convert.ToInt32(orderId))
+                            {
+                                order.isPaid = true;
+                                checkedListBoxServices.Items.Remove(checkedListBoxServices.CheckedItems[i]);
+                                orders.Remove(order);
+                            }
+                        }
+                        
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Пополните ваш счет", "Сообщение");
+                }
+                db.SaveChanges();
             }
         }
 
         private void buttonDeleteServices_Click(object sender, EventArgs e)
         {
+            using (UserContext db = new UserContext())
+            {
+                for (int i = 0; i < checkedListBoxServices.CheckedItems.Count; i++)
+                {
+                    int count = 1;
+                    string checkedOrder = checkedListBoxServices.CheckedItems[i].ToString();
+                    string orderId = "";
+                    while (checkedOrder[count] != ']')
+                    {
+                        orderId += checkedOrder[count];
+                        count++;
+                    }
+                    MessageBox.Show(orderId);
+                    foreach (Order order in db.Orders)
+                    {
+                        if (order.id == Convert.ToInt32(orderId))
+                        {
+                            order.isDeleted = true;
+                            checkedListBoxServices.Items.Remove(checkedListBoxServices.CheckedItems[i]);
+                            orders.Remove(order);
+                        }
+                    }
 
+                }
+                db.SaveChanges();
+            }
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            OrderHistory orderHistory = new OrderHistory();
+            orderHistory.Show();
+            this.Close();
+            Main.main.Hide();
         }
     }
 }

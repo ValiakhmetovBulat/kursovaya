@@ -16,8 +16,9 @@ namespace WindowsFormsApplication1
         public int serviceId { get; set; }
         public int totalPrice { get; set; }
         public bool isPaid { get; set; }
+        public bool isDeleted { get; set; }
         public Order() { }
-        public Order (DateTime dateOfArriving, DateTime dateOfLiving, int clientId, int roomId, int serviceId, int totalPrice, bool isPaid)
+        public Order (DateTime dateOfArriving, DateTime dateOfLiving, int clientId, int roomId, int serviceId, int totalPrice, bool isPaid, bool isDeleted)
         {
             this.dateOfArriving = dateOfArriving;
             this.dateOfLeaving = dateOfLiving;
@@ -26,6 +27,7 @@ namespace WindowsFormsApplication1
             this.serviceId = serviceId;
             this.totalPrice = totalPrice;
             this.isPaid = isPaid;
+            this.isDeleted = isDeleted;
         }
     }
 }

@@ -123,7 +123,7 @@ namespace WindowsFormsApplication1
                     {
                         try
                         {
-                            User user = new User(textBoxLogin.Text, this.GetHashString(textBoxPassword.Text), textBoxEmail.Text, "User");
+                            User user = new User(textBoxLogin.Text, this.GetHashString(textBoxPassword.Text), textBoxEmail.Text, "User", 0);
 
                             MailAddress from = new MailAddress("ii.oio.ooo@mail.ru", "kriper2004");
                             MailAddress to = new MailAddress(textBoxEmail.Text);

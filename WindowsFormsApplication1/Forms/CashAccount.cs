@@ -13,11 +13,13 @@ namespace WindowsFormsApplication1.Forms
     public partial class CashAccount : Form
     {
         public static CashAccount CashAcc;
-        public static WelcomeForm welcome;
+       
+        public User user = Main.user1;
         public CashAccount()
         {
             InitializeComponent();
             radioButtonRuble.Checked = true;
+            CashAcc = this;
         }
 
         private void CashAccount_Load(object sender, EventArgs e)
@@ -27,39 +29,42 @@ namespace WindowsFormsApplication1.Forms
 
         private void buttonAddCash_Click(object sender, EventArgs e)
         {
-            try
+            using (UserContext db = new UserContext())
             {
-                int cash = Convert.ToInt32(textBoxAddCash.Text);
-                int cash1 = Convert.ToInt32(welcome.textBoxCash.Text);
-                int cash2 = 0;
-                if (radioButtonRuble.Checked)
+                try
                 {
-                    cash2 = cash + cash1;
-                    welcome.textBoxCash.Text = Convert.ToString(cash2);
+                    user = db.Users.Find(user.Id);
+                    int cash = Convert.ToInt32(textBoxAddCash.Text);                 
+                    if (radioButtonRuble.Checked)
+                    {
+                        user.sum += cash;
+                        
+                    }
+                    if (radioButtonDollar.Checked)
+                    {
+                        user.sum += cash * 70;
+                    }
+                    if (radioButtonEuro.Checked)
+                    {
+                        user.sum += cash * 90;
+                    }
+                    MessageBox.Show("+деньги");
+                    textBoxAddCash.Text = null;
+                    db.SaveChanges();
                 }
-                if (radioButtonDollar.Checked)
+                catch
                 {
-                    cash2 = cash * 75 + cash1;
-                    welcome.textBoxCash.Text = Convert.ToString(cash2);
-                }
-                if (radioButtonEuro.Checked)
-                {
-                    cash2 = cash * 90 + cash1;
-                    welcome.textBoxCash.Text = Convert.ToString(cash2);
-                }
-                MessageBox.Show("+деньги");
-                textBoxAddCash.Text = null;
-            }
-            catch
-            {
 
+                }
             }
-
         }
 
         private void CashAccount_FormClosed(object sender, FormClosedEventArgs e)
         {
-            welcome.Show();
+            WelcomeForm welcomeForm = new WelcomeForm();
+            welcomeForm.Show();
+            welcomeForm.textBoxCash.Text = user.sum.ToString();
+            CashAcc.Hide();
         }
 
         private void textBoxAddCash_KeyPress(object sender, KeyPressEventArgs e)

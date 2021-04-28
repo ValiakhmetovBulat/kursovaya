@@ -55,7 +55,7 @@ namespace WindowsFormsApplication1.Classes
                 }
                 if (comboBoxRooms.SelectedItem != null || comboBoxServices.SelectedItem != null)
                 {
-                    Order order = new Order(dateOfArriving.Value, dateOfLeaving.Value, ClientKey, RoomKey, ServiceKey, Convert.ToInt32(textBoxTotalPrice.Text), false);
+                    Order order = new Order(dateOfArriving.Value, dateOfLeaving.Value, ClientKey, RoomKey, ServiceKey, Convert.ToInt32(textBoxTotalPrice.Text), false, false);
                     db.Orders.Add(order);
                     db.SaveChanges();
                     WelcomeForm welcomeForm = new WelcomeForm();
