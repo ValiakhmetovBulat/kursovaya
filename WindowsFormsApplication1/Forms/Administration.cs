@@ -33,6 +33,7 @@ namespace WindowsFormsApplication1
             comboBox4.KeyPress += (sender, e) => e.Handled = true;
             comboBox5.KeyPress += (sender, e) => e.Handled = true;
             comboBox6.KeyPress += (sender, e) => e.Handled = true;
+            comboBox7.KeyPress += (sender, e) => e.Handled = true;
             textBox1.Enabled = false;
             textBox2.Enabled = false;
             textBox3.Enabled = false;
@@ -59,6 +60,9 @@ namespace WindowsFormsApplication1
             dateTimePicker2.Enabled = false;
             buttonDelete.Enabled = false;
             buttonChange.Enabled = false;
+            buttonAdd.Enabled = false;
+
+            textBoxUserClient.Visible = false;
         }
 
         private string GetHashString(string s)
@@ -545,6 +549,8 @@ namespace WindowsFormsApplication1
         {
             buttonDelete.Enabled = true;
             buttonChange.Enabled = false;
+            buttonAdd.Enabled = false;
+
             textBox1.Enabled = false;
             textBox2.Enabled = false;
             textBox3.Enabled = false;
@@ -575,6 +581,8 @@ namespace WindowsFormsApplication1
         {
             buttonDelete.Enabled = false;
             buttonChange.Enabled = false;
+            buttonAdd.Enabled = false;
+
             textBox1.Enabled = false;
             textBox2.Enabled = false;
             textBox3.Enabled = false;
@@ -604,7 +612,9 @@ namespace WindowsFormsApplication1
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
             buttonDelete.Enabled = false;
+            buttonAdd.Enabled = false;
             buttonChange.Enabled = true;
+
             textBox1.Enabled = true;
             textBox2.Enabled = true;
             textBox3.Enabled = true;
@@ -655,6 +665,129 @@ namespace WindowsFormsApplication1
             base.Capture = false;
             Message m = Message.Create(base.Handle, 0xa1, new IntPtr(2), IntPtr.Zero);
             this.WndProc(ref m);
+        }
+
+        public bool UserIsCreated = false;
+        private void buttonAdd_Click(object sender, EventArgs e)
+        {
+            using (UserContext db = new UserContext())
+            {
+                if (tabControl1.SelectedTab == tabControl1.TabPages[0] && textBox1.Text != null && textBox2.Text != null && textBox3.Text != null)
+                {
+                    User user = new User(textBox1.Text, GetHashString(textBox2.Text), textBox3.Text, "User", 0);
+                    db.Users.Add(user);
+                    db.SaveChanges();
+                }
+                if (tabControl1.SelectedTab == tabControl1.TabPages[1] && textBox4.Text != null && textBox5.Text != null
+                    && textBox6.Text != null && textBox7.Text != null && textBox8.Text != null && textBox9.Text != null
+                    && dateTimePicker1 != null && textBoxUserClient.Text != null)
+                {
+                    foreach(User user in db.Users)
+                    {
+                        if(textBoxUserClient.Text == user.Login)
+                        {
+                            UserIsCreated = true;
+                            UserKey = user.Id;
+                        }
+                    }
+                    if(!UserIsCreated)
+                    {
+                        MessageBox.Show("Данного пользователя не существует", "Сообщение");
+                    }
+                    else
+                    {
+                        Client client = new Client(textBox4.Text, textBox5.Text, textBox6.Text, dateTimePicker1.Value, 
+                            Convert.ToInt32(textBox7.Text), Convert.ToInt32(textBox8.Text),textBox9.Text, UserKey);
+                        db.Clients.Add(client);
+                        db.SaveChanges();
+                    }
+                }
+                if (tabControl1.SelectedTab == tabControl1.TabPages[2] && textBox10.Text != null && textBox11.Text != null)
+                {
+                    Room room = new Room(textBox10.Text,Convert.ToInt32(textBox11.Text));
+                    db.Rooms.Add(room);
+                    db.SaveChanges();
+                }
+                if(tabControl1.SelectedTab == tabControl1.TabPages[3] && textBox12.Text != null && textBox13.Text != null)
+                {
+                    Service service = new Service(textBox12.Text, Convert.ToInt32(textBox13.Text), richTextBox1.Text);
+                    db.Services.Add(service);
+                    db.SaveChanges();
+                }
+                if(tabControl1.SelectedTab == tabControl1.TabPages[4] && textBox14.Text != null && textBox15.Text != null
+                    && textBox16.Text != null && textBox17.Text != null && textBox18.Text != null && textBox19.Text != null
+                    && dateTimePicker2 != null && comboBox7.SelectedItem != null)
+                {
+                    foreach(Position position in db.Positions)
+                    {
+                        if(comboBox7.Text == position.name)
+                        {
+                            PositionKey = position.id;
+                        }
+                    }
+
+                    Staff staff = new Staff(textBox19.Text, textBox18.Text, textBox17.Text, dateTimePicker2.Value,
+                            Convert.ToInt32(textBox16.Text), Convert.ToInt32(textBox15.Text), textBox14.Text, PositionKey);
+                    db.Staff.Add(staff);
+                    db.SaveChanges();
+                }
+                if(tabControl1.SelectedTab == tabControl1.TabPages[5] && textBox21.Text != null && textBox22.Text != null)
+                {
+                    Position position = new Position(textBox21.Text, Convert.ToInt32(textBox22.Text));
+                    db.Positions.Add(position);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    MessageBox.Show("Обнаружены пустые поля", "Сообщение");
+                }
+            }
+            
+        }
+
+        private void radioButton4_CheckedChanged(object sender, EventArgs e)
+        {
+            buttonChange.Enabled = false;
+            buttonDelete.Enabled = false;
+            buttonAdd.Enabled = true;
+
+            textBox1.Enabled = true;
+            textBox2.Enabled = true;
+            textBox3.Enabled = true;
+            textBox4.Enabled = true;
+            textBox5.Enabled = true;
+            textBox6.Enabled = true;
+            textBox7.Enabled = true;
+            textBox8.Enabled = true;
+            textBox9.Enabled = true;
+            textBox10.Enabled = true;
+            textBox11.Enabled = true;
+            textBox12.Enabled = true;
+            textBox13.Enabled = true;
+            textBox14.Enabled = true;
+            textBox15.Enabled = true;
+            textBox16.Enabled = true;
+            textBox17.Enabled = true;
+            textBox18.Enabled = true;
+            textBox19.Enabled = true;
+            comboBox7.Enabled = true;
+            textBox21.Enabled = true;
+            textBox22.Enabled = true;
+            dateTimePicker1.Enabled = true;
+            dateTimePicker2.Enabled = true;
+
+            comboBox2.Visible = false;
+            textBoxUserClient.Visible = true;
+        }
+
+        private void textBoxUserClient_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void textBoxUserClient_MouseClick(object sender, MouseEventArgs e)
+        {
+            
         }
     }
 }

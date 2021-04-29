@@ -71,6 +71,7 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.textBoxUserClient = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
@@ -101,6 +102,8 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.buttonRefresh = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.buttonAdd = new System.Windows.Forms.Button();
+            this.radioButton4 = new System.Windows.Forms.RadioButton();
             this.tabPage6.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.tabPage4.SuspendLayout();
@@ -114,7 +117,7 @@
             // 
             this.buttonChange.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonChange.ForeColor = System.Drawing.Color.Black;
-            this.buttonChange.Location = new System.Drawing.Point(366, 71);
+            this.buttonChange.Location = new System.Drawing.Point(366, 113);
             this.buttonChange.Name = "buttonChange";
             this.buttonChange.Size = new System.Drawing.Size(121, 28);
             this.buttonChange.TabIndex = 4;
@@ -126,7 +129,7 @@
             // 
             this.buttonDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonDelete.ForeColor = System.Drawing.Color.Black;
-            this.buttonDelete.Location = new System.Drawing.Point(366, 118);
+            this.buttonDelete.Location = new System.Drawing.Point(366, 155);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(121, 28);
             this.buttonDelete.TabIndex = 24;
@@ -136,7 +139,7 @@
             // 
             // tabPage6
             // 
-            this.tabPage6.BackColor = System.Drawing.Color.Pink;
+            this.tabPage6.BackColor = System.Drawing.Color.GhostWhite;
             this.tabPage6.Controls.Add(this.label28);
             this.tabPage6.Controls.Add(this.label26);
             this.tabPage6.Controls.Add(this.textBox22);
@@ -201,7 +204,7 @@
             // 
             // tabPage5
             // 
-            this.tabPage5.BackColor = System.Drawing.Color.Pink;
+            this.tabPage5.BackColor = System.Drawing.Color.GhostWhite;
             this.tabPage5.Controls.Add(this.comboBox7);
             this.tabPage5.Controls.Add(this.label24);
             this.tabPage5.Controls.Add(this.label25);
@@ -365,7 +368,7 @@
             // 
             // tabPage4
             // 
-            this.tabPage4.BackColor = System.Drawing.Color.Pink;
+            this.tabPage4.BackColor = System.Drawing.Color.GhostWhite;
             this.tabPage4.Controls.Add(this.label15);
             this.tabPage4.Controls.Add(this.comboBox4);
             this.tabPage4.Controls.Add(this.textBox13);
@@ -439,7 +442,7 @@
             // 
             // tabPage3
             // 
-            this.tabPage3.BackColor = System.Drawing.Color.Pink;
+            this.tabPage3.BackColor = System.Drawing.Color.GhostWhite;
             this.tabPage3.Controls.Add(this.label12);
             this.tabPage3.Controls.Add(this.comboBox3);
             this.tabPage3.Controls.Add(this.textBox11);
@@ -504,7 +507,8 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.BackColor = System.Drawing.Color.Pink;
+            this.tabPage2.BackColor = System.Drawing.Color.GhostWhite;
+            this.tabPage2.Controls.Add(this.textBoxUserClient);
             this.tabPage2.Controls.Add(this.label5);
             this.tabPage2.Controls.Add(this.textBox4);
             this.tabPage2.Controls.Add(this.textBox5);
@@ -527,10 +531,20 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "CLIENTS";
             // 
+            // textBoxUserClient
+            // 
+            this.textBoxUserClient.Location = new System.Drawing.Point(77, 47);
+            this.textBoxUserClient.Name = "textBoxUserClient";
+            this.textBoxUserClient.Size = new System.Drawing.Size(154, 21);
+            this.textBoxUserClient.TabIndex = 24;
+            this.textBoxUserClient.Text = "UserLogin";
+            this.textBoxUserClient.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBoxUserClient_MouseClick);
+            this.textBoxUserClient.TextChanged += new System.EventHandler(this.textBoxUserClient_TextChanged);
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(79, 31);
+            this.label5.Location = new System.Drawing.Point(74, 31);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(48, 13);
             this.label5.TabIndex = 9;
@@ -538,49 +552,49 @@
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(82, 87);
+            this.textBox4.Location = new System.Drawing.Point(77, 87);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(138, 21);
             this.textBox4.TabIndex = 10;
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(82, 125);
+            this.textBox5.Location = new System.Drawing.Point(77, 125);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(138, 21);
             this.textBox5.TabIndex = 11;
             // 
             // textBox6
             // 
-            this.textBox6.Location = new System.Drawing.Point(82, 165);
+            this.textBox6.Location = new System.Drawing.Point(77, 165);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(138, 21);
             this.textBox6.TabIndex = 12;
             // 
             // textBox7
             // 
-            this.textBox7.Location = new System.Drawing.Point(82, 205);
+            this.textBox7.Location = new System.Drawing.Point(77, 205);
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(51, 21);
             this.textBox7.TabIndex = 13;
             // 
             // textBox8
             // 
-            this.textBox8.Location = new System.Drawing.Point(139, 205);
+            this.textBox8.Location = new System.Drawing.Point(134, 205);
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(81, 21);
             this.textBox8.TabIndex = 14;
             // 
             // textBox9
             // 
-            this.textBox9.Location = new System.Drawing.Point(82, 245);
+            this.textBox9.Location = new System.Drawing.Point(77, 245);
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(138, 21);
             this.textBox9.TabIndex = 15;
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(82, 285);
+            this.dateTimePicker1.Location = new System.Drawing.Point(77, 285);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(138, 21);
             this.dateTimePicker1.TabIndex = 16;
@@ -588,7 +602,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(79, 71);
+            this.label6.Location = new System.Drawing.Point(74, 71);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(53, 13);
             this.label6.TabIndex = 17;
@@ -597,7 +611,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(79, 111);
+            this.label7.Location = new System.Drawing.Point(74, 111);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(38, 13);
             this.label7.TabIndex = 18;
@@ -606,7 +620,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(79, 149);
+            this.label8.Location = new System.Drawing.Point(74, 149);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(31, 13);
             this.label8.TabIndex = 19;
@@ -615,7 +629,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(79, 189);
+            this.label9.Location = new System.Drawing.Point(74, 189);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(40, 13);
             this.label9.TabIndex = 20;
@@ -624,7 +638,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(79, 229);
+            this.label10.Location = new System.Drawing.Point(74, 229);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(41, 13);
             this.label10.TabIndex = 21;
@@ -633,7 +647,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(79, 269);
+            this.label11.Location = new System.Drawing.Point(74, 269);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(68, 13);
             this.label11.TabIndex = 22;
@@ -642,7 +656,7 @@
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(75, 47);
+            this.comboBox2.Location = new System.Drawing.Point(70, 47);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(154, 21);
             this.comboBox2.TabIndex = 23;
@@ -650,7 +664,7 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.BackColor = System.Drawing.Color.Pink;
+            this.tabPage1.BackColor = System.Drawing.Color.GhostWhite;
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.comboBox1);
             this.tabPage1.Controls.Add(this.textBox1);
@@ -736,7 +750,7 @@
             // 
             this.radioButton3.AutoSize = true;
             this.radioButton3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.radioButton3.Location = new System.Drawing.Point(530, 31);
+            this.radioButton3.Location = new System.Drawing.Point(366, 71);
             this.radioButton3.Name = "radioButton3";
             this.radioButton3.Size = new System.Drawing.Size(74, 17);
             this.radioButton3.TabIndex = 11;
@@ -790,9 +804,9 @@
             // 
             this.buttonRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonRefresh.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonRefresh.Location = new System.Drawing.Point(498, 90);
+            this.buttonRefresh.Location = new System.Drawing.Point(498, 155);
             this.buttonRefresh.Name = "buttonRefresh";
-            this.buttonRefresh.Size = new System.Drawing.Size(25, 37);
+            this.buttonRefresh.Size = new System.Drawing.Size(25, 28);
             this.buttonRefresh.TabIndex = 62;
             this.buttonRefresh.Text = "⭯";
             this.buttonRefresh.UseVisualStyleBackColor = true;
@@ -801,7 +815,7 @@
             // button1
             // 
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(530, 362);
+            this.button1.Location = new System.Drawing.Point(487, 362);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(92, 34);
             this.button1.TabIndex = 63;
@@ -809,12 +823,38 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // buttonAdd
+            // 
+            this.buttonAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonAdd.ForeColor = System.Drawing.Color.Black;
+            this.buttonAdd.Location = new System.Drawing.Point(366, 200);
+            this.buttonAdd.Name = "buttonAdd";
+            this.buttonAdd.Size = new System.Drawing.Size(121, 28);
+            this.buttonAdd.TabIndex = 64;
+            this.buttonAdd.Text = "Добавить";
+            this.buttonAdd.UseVisualStyleBackColor = true;
+            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
+            // 
+            // radioButton4
+            // 
+            this.radioButton4.AutoSize = true;
+            this.radioButton4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.radioButton4.Location = new System.Drawing.Point(446, 71);
+            this.radioButton4.Name = "radioButton4";
+            this.radioButton4.Size = new System.Drawing.Size(86, 17);
+            this.radioButton4.TabIndex = 65;
+            this.radioButton4.Text = "Добавление";
+            this.radioButton4.UseVisualStyleBackColor = true;
+            this.radioButton4.CheckedChanged += new System.EventHandler(this.radioButton4_CheckedChanged);
+            // 
             // Administration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Pink;
-            this.ClientSize = new System.Drawing.Size(634, 404);
+            this.BackColor = System.Drawing.Color.LavenderBlush;
+            this.ClientSize = new System.Drawing.Size(596, 404);
+            this.Controls.Add(this.radioButton4);
+            this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonRefresh);
             this.Controls.Add(this.radioButton3);
@@ -923,5 +963,8 @@
         private System.Windows.Forms.ComboBox comboBox7;
         private System.Windows.Forms.Button buttonRefresh;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonAdd;
+        private System.Windows.Forms.RadioButton radioButton4;
+        private System.Windows.Forms.TextBox textBoxUserClient;
     }
 }
