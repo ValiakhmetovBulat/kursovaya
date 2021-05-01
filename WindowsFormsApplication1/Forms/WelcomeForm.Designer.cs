@@ -38,13 +38,14 @@
             this.textBoxTotalPrice = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonHistory = new System.Windows.Forms.Button();
+            this.buttonChangeData = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonBookARoom
             // 
             this.buttonBookARoom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonBookARoom.ForeColor = System.Drawing.Color.White;
-            this.buttonBookARoom.Location = new System.Drawing.Point(511, 130);
+            this.buttonBookARoom.Location = new System.Drawing.Point(511, 110);
             this.buttonBookARoom.Name = "buttonBookARoom";
             this.buttonBookARoom.Size = new System.Drawing.Size(139, 40);
             this.buttonBookARoom.TabIndex = 0;
@@ -139,12 +140,25 @@
             this.buttonHistory.UseVisualStyleBackColor = true;
             this.buttonHistory.Click += new System.EventHandler(this.button1_Click_1);
             // 
+            // buttonChangeData
+            // 
+            this.buttonChangeData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonChangeData.ForeColor = System.Drawing.Color.White;
+            this.buttonChangeData.Location = new System.Drawing.Point(511, 156);
+            this.buttonChangeData.Name = "buttonChangeData";
+            this.buttonChangeData.Size = new System.Drawing.Size(139, 40);
+            this.buttonChangeData.TabIndex = 10;
+            this.buttonChangeData.Text = "Изменить данные";
+            this.buttonChangeData.UseVisualStyleBackColor = true;
+            this.buttonChangeData.Click += new System.EventHandler(this.buttonChangeData_Click);
+            // 
             // WelcomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkSlateGray;
             this.ClientSize = new System.Drawing.Size(658, 301);
+            this.Controls.Add(this.buttonChangeData);
             this.Controls.Add(this.buttonHistory);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxTotalPrice);
@@ -178,5 +192,6 @@
         private System.Windows.Forms.TextBox textBoxTotalPrice;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonHistory;
+        private System.Windows.Forms.Button buttonChangeData;
     }
 }

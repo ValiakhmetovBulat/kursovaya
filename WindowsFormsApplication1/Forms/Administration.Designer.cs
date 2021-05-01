@@ -176,6 +176,8 @@
             this.textBox22.Name = "textBox22";
             this.textBox22.Size = new System.Drawing.Size(138, 21);
             this.textBox22.TabIndex = 57;
+            this.textBox22.TextChanged += new System.EventHandler(this.textBox22_TextChanged);
+            this.textBox22.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox22_KeyPress);
             // 
             // textBox21
             // 
@@ -278,23 +280,29 @@
             // textBox16
             // 
             this.textBox16.Location = new System.Drawing.Point(82, 205);
+            this.textBox16.MaxLength = 4;
             this.textBox16.Name = "textBox16";
             this.textBox16.Size = new System.Drawing.Size(51, 21);
             this.textBox16.TabIndex = 42;
+            this.textBox16.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox16_KeyPress);
             // 
             // textBox15
             // 
             this.textBox15.Location = new System.Drawing.Point(139, 205);
+            this.textBox15.MaxLength = 6;
             this.textBox15.Name = "textBox15";
             this.textBox15.Size = new System.Drawing.Size(81, 21);
             this.textBox15.TabIndex = 43;
+            this.textBox15.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox15_KeyPress);
             // 
             // textBox14
             // 
             this.textBox14.Location = new System.Drawing.Point(82, 245);
+            this.textBox14.MaxLength = 11;
             this.textBox14.Name = "textBox14";
             this.textBox14.Size = new System.Drawing.Size(138, 21);
             this.textBox14.TabIndex = 44;
+            this.textBox14.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox14_KeyPress);
             // 
             // comboBox5
             // 
@@ -406,6 +414,7 @@
             this.textBox13.Name = "textBox13";
             this.textBox13.Size = new System.Drawing.Size(217, 21);
             this.textBox13.TabIndex = 33;
+            this.textBox13.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox13_KeyPress);
             // 
             // textBox12
             // 
@@ -479,6 +488,8 @@
             this.textBox11.Name = "textBox11";
             this.textBox11.Size = new System.Drawing.Size(138, 21);
             this.textBox11.TabIndex = 27;
+            this.textBox11.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
+            this.textBox11.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox11_KeyPress);
             // 
             // textBox10
             // 
@@ -574,23 +585,29 @@
             // textBox7
             // 
             this.textBox7.Location = new System.Drawing.Point(77, 205);
+            this.textBox7.MaxLength = 4;
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(51, 21);
             this.textBox7.TabIndex = 13;
+            this.textBox7.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox7_KeyPress);
             // 
             // textBox8
             // 
             this.textBox8.Location = new System.Drawing.Point(134, 205);
+            this.textBox8.MaxLength = 6;
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(81, 21);
             this.textBox8.TabIndex = 14;
+            this.textBox8.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox8_KeyPress);
             // 
             // textBox9
             // 
             this.textBox9.Location = new System.Drawing.Point(77, 245);
+            this.textBox9.MaxLength = 11;
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(138, 21);
             this.textBox9.TabIndex = 15;
+            this.textBox9.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox9_KeyPress);
             // 
             // dateTimePicker1
             // 

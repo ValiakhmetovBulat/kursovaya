@@ -93,6 +93,12 @@
     <Compile Include="Forms\CashAccount.Designer.cs">
       <DependentUpon>CashAccount.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ChangeData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ChangeData.Designer.cs">
+      <DependentUpon>ChangeData.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -150,6 +156,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CashAccount.resx">
       <DependentUpon>CashAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ChangeData.resx">
+      <DependentUpon>ChangeData.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Main.resx">
       <DependentUpon>Main.cs</DependentUpon>

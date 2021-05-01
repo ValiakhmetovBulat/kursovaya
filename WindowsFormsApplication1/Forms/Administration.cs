@@ -65,7 +65,7 @@ namespace WindowsFormsApplication1
             textBoxUserClient.Visible = false;
             comboBox2.Visible = true;
         }
-
+        public List<User> users = new List<User>();
         private string GetHashString(string s)
         {
             byte[] bytes = Encoding.Unicode.GetBytes(s);
@@ -84,9 +84,15 @@ namespace WindowsFormsApplication1
             
             using (UserContext db = new UserContext())
             {
+                
+                foreach (Client client in db.Clients)
+                {
+                    userIdList.Add(client.userId);
+                }
                 foreach (User user in db.Users)
                 {
                     comboBox1.Items.Add(user.Login);
+                    users.Add(user);
                 }
                 foreach (Client client in db.Clients)
                 {
@@ -439,6 +445,9 @@ namespace WindowsFormsApplication1
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            textBox1.Text = "";
+            textBox2.Text = "";
+            textBox3.Text = "";
             using (UserContext db = new UserContext())
             {
                 foreach (User user in db.Users)
@@ -455,11 +464,25 @@ namespace WindowsFormsApplication1
         }
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
+            textBox4.Text = "";
+            textBox5.Text = "";
+            textBox6.Text = "";
+            textBox7.Text = "";
+            textBox8.Text = "";
+            textBox9.Text = "";
             using (UserContext db = new UserContext())
             {
+                string login = "";
                 foreach (Client client in db.Clients)
                 {
-                    if (user1.Login == comboBox2.SelectedItem.ToString())
+                    foreach (User user in users)
+                    {
+                        if (client.userId == user.Id)
+                        {
+                            login = user.Login;
+                        }
+                    }
+                    if (login == comboBox2.SelectedItem.ToString())
                     {
                         ClientKey = client.id;
                         textBox4.Text = client.surname;
@@ -472,10 +495,14 @@ namespace WindowsFormsApplication1
                     }
                 }
             }
+            
+            
         }
 
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
+            textBox10.Text = "";
+            textBox11.Text = "";
             using (UserContext db = new UserContext())
             {
                 foreach (Room room in db.Rooms)
@@ -492,6 +519,9 @@ namespace WindowsFormsApplication1
 
         private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
         {
+            textBox12.Text = "";
+            textBox13.Text = "";
+            richTextBox1.Text = "";
             using (UserContext db = new UserContext())
             {
                 foreach (Service service in db.Services)
@@ -509,6 +539,12 @@ namespace WindowsFormsApplication1
 
         private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
         {
+            textBox14.Text = "";
+            textBox15.Text = "";
+            textBox16.Text = "";
+            textBox17.Text = "";
+            textBox18.Text = "";
+            textBox19.Text = "";
             using (UserContext db = new UserContext())
             {
                 foreach (Staff staff in db.Staff)
@@ -532,6 +568,8 @@ namespace WindowsFormsApplication1
 
         private void comboBox6_SelectedIndexChanged(object sender, EventArgs e)
         {
+            textBox21.Text = "";
+            textBox22.Text = "";
             using (UserContext db = new UserContext())
             {
                 foreach (Position position in db.Positions)
@@ -548,9 +586,19 @@ namespace WindowsFormsApplication1
 
         private void radioButton3_CheckedChanged(object sender, EventArgs e)
         {
+            comboBox2.Visible = true;
+            textBoxUserClient.Visible = false;
+
             buttonDelete.Enabled = true;
             buttonChange.Enabled = false;
             buttonAdd.Enabled = false;
+
+            comboBox1.Enabled = true;
+            comboBox2.Enabled = true;
+            comboBox3.Enabled = true;
+            comboBox4.Enabled = true;
+            comboBox5.Enabled = true;
+            comboBox6.Enabled = true;
 
             textBox1.Enabled = false;
             textBox2.Enabled = false;
@@ -580,9 +628,19 @@ namespace WindowsFormsApplication1
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
+            comboBox2.Visible = true;
+            textBoxUserClient.Visible = false;
+
             buttonDelete.Enabled = false;
             buttonChange.Enabled = false;
             buttonAdd.Enabled = false;
+
+            comboBox1.Enabled = true;
+            comboBox2.Enabled = true;
+            comboBox3.Enabled = true;
+            comboBox4.Enabled = true;
+            comboBox5.Enabled = true;
+            comboBox6.Enabled = true;
 
             textBox1.Enabled = false;
             textBox2.Enabled = false;
@@ -612,9 +670,19 @@ namespace WindowsFormsApplication1
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
+            comboBox2.Visible = true;
+            textBoxUserClient.Visible = false;
+
             buttonDelete.Enabled = false;
             buttonAdd.Enabled = false;
             buttonChange.Enabled = true;
+
+            comboBox1.Enabled = true;
+            comboBox2.Enabled = true;
+            comboBox3.Enabled = true;
+            comboBox4.Enabled = true;
+            comboBox5.Enabled = true;
+            comboBox6.Enabled = true;
 
             textBox1.Enabled = true;
             textBox2.Enabled = true;
@@ -669,27 +737,29 @@ namespace WindowsFormsApplication1
         }
 
         public bool UserIsCreated = false;
-        public List<int> userIdList;
+        public List<int> userIdList = new List<int>();
         private void buttonAdd_Click(object sender, EventArgs e)
         {
+            bool userChecked = false;
             using (UserContext db = new UserContext())
             {
-                if (tabControl1.SelectedTab == tabControl1.TabPages[0] && textBox1.Text != null && textBox2.Text != null && textBox3.Text != null)
+                if (tabControl1.SelectedTab == tabControl1.TabPages[0] && textBox1.Text != "" && textBox2.Text != "" && textBox3.Text != "")
                 {
                     User user = new User(textBox1.Text, GetHashString(textBox2.Text), textBox3.Text, "User", 0);
                     db.Users.Add(user);
                     db.SaveChanges();
                     _formRefresh(0);
                 }
-                if (tabControl1.SelectedTab == tabControl1.TabPages[1] && textBox4.Text != null && textBox5.Text != null
-                    && textBox6.Text != null && textBox7.Text != null && textBox8.Text != null && textBox9.Text != null
-                    && dateTimePicker1 != null && textBoxUserClient.Text != null)
+                else
                 {
-                    foreach (Client client in db.Clients)
-                    {
-                        userIdList.Add(client.userId);
-                    }
-                    foreach (User user in db.Users)
+                    MessageBox.Show("Обнаружены пустые поля");
+                }
+                if (tabControl1.SelectedTab == tabControl1.TabPages[1] && textBox4.Text != "" && textBox5.Text != ""
+                    && textBox6.Text != "" && textBox7.Text != "" && textBox8.Text != "" && textBox9.Text != ""
+                    && dateTimePicker1 != null && textBoxUserClient.Text != "")
+                {
+
+                    foreach (User user in users)
                     {
                         if (textBoxUserClient.Text == user.Login)
                         {
@@ -699,19 +769,21 @@ namespace WindowsFormsApplication1
                             }
                             else
                             {
-                                //UserIsCreated = true;
-                                UserKey = user.Id;
+                                UserIsCreated = true;
+
                                 Client client = new Client(textBox4.Text, textBox5.Text, textBox6.Text, dateTimePicker1.Value,
-                            Convert.ToInt32(textBox7.Text), Convert.ToInt32(textBox8.Text), textBox9.Text, UserKey);
+                                Convert.ToInt32(textBox7.Text), Convert.ToInt32(textBox8.Text), textBox9.Text, user.Id);
                                 db.Clients.Add(client);
                                 db.SaveChanges();
                                 _formRefresh(1);
+                                break;
                             }
                         }
-                        //    else
-                        //    {
-                        //        MessageBox.Show("Данного пользователя не существует", "Сообщение");
-                        //    }
+                        else if (!userChecked && !UserIsCreated)
+                        {
+                            userChecked = true;
+                            MessageBox.Show("Данного пользователя не существует", "Сообщение");
+                        }
                         //}
                         //if(!UserIsCreated)
                         //{
@@ -726,22 +798,23 @@ namespace WindowsFormsApplication1
                         //    _formRefresh(1);
                         //}
                     }
-                    if (tabControl1.SelectedTab == tabControl1.TabPages[2] && textBox10.Text != null && textBox11.Text != null)
+                }
+                    if (tabControl1.SelectedTab == tabControl1.TabPages[2] && textBox10.Text != "" && textBox11.Text != "")
                     {
                         Room room = new Room(textBox10.Text, Convert.ToInt32(textBox11.Text));
                         db.Rooms.Add(room);
                         db.SaveChanges();
                         _formRefresh(2);
                     }
-                    if (tabControl1.SelectedTab == tabControl1.TabPages[3] && textBox12.Text != null && textBox13.Text != null)
+                    if (tabControl1.SelectedTab == tabControl1.TabPages[3] && textBox12.Text != "" && textBox13.Text != "")
                     {
                         Service service = new Service(textBox12.Text, Convert.ToInt32(textBox13.Text), richTextBox1.Text);
                         db.Services.Add(service);
                         db.SaveChanges();
                         _formRefresh(3);
                     }
-                    if (tabControl1.SelectedTab == tabControl1.TabPages[4] && textBox14.Text != null && textBox15.Text != null
-                        && textBox16.Text != null && textBox17.Text != null && textBox18.Text != null && textBox19.Text != null
+                    if (tabControl1.SelectedTab == tabControl1.TabPages[4] && textBox14.Text != "" && textBox15.Text != ""
+                        && textBox16.Text != "" && textBox17.Text != "" && textBox18.Text != "" && textBox19.Text != ""
                         && dateTimePicker2 != null && comboBox7.SelectedItem != null)
                     {
                         foreach (Position position in db.Positions)
@@ -769,7 +842,7 @@ namespace WindowsFormsApplication1
                     {
                         MessageBox.Show("Обнаружены пустые поля", "Сообщение");
                     }
-                }
+                
 
             }
         }
@@ -846,6 +919,97 @@ namespace WindowsFormsApplication1
         private void textBoxUserClient_MouseClick(object sender, MouseEventArgs e)
         {
             
+        }
+
+        private void textBox11_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox7_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char number = e.KeyChar;
+            if (!Char.IsDigit(number) && number != 8)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBox8_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char number = e.KeyChar;
+            if (!Char.IsDigit(number) && number != 8)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBox9_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char number = e.KeyChar;
+            if (!Char.IsDigit(number) && number != 8)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBox11_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char number = e.KeyChar;
+            if (!Char.IsDigit(number) && number != 8)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBox13_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char number = e.KeyChar;
+            if (!Char.IsDigit(number) && number != 8)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBox16_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char number = e.KeyChar;
+            if (!Char.IsDigit(number) && number != 8)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBox15_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char number = e.KeyChar;
+            if (!Char.IsDigit(number) && number != 8)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBox14_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char number = e.KeyChar;
+            if (!Char.IsDigit(number) && number != 8)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBox22_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox22_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char number = e.KeyChar;
+            if (!Char.IsDigit(number) && number != 8)
+            {
+                e.Handled = true;
+            }
         }
     }
 }

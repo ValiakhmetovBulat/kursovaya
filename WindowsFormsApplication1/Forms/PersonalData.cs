@@ -74,6 +74,7 @@ namespace WindowsFormsApplication1
 
         private void PersonalData_FormClosed(object sender, FormClosedEventArgs e)
         {
+            WelcomeForm welcome = new WelcomeForm();
             welcome.Show();
         }
 

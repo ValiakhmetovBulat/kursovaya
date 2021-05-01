@@ -34,7 +34,14 @@ namespace WindowsFormsApplication1
         private void WelcomeForm_Load(object sender, EventArgs e)
         {
             checkedListBoxServices.Items.Clear();
-            
+            if (client1 == null)
+            {
+                buttonHistory.Enabled = false;
+            }
+            else
+            {
+                buttonHistory.Enabled = true;
+            }
             bool trg = true;
             using (UserContext db = new UserContext())
             {
@@ -242,8 +249,18 @@ namespace WindowsFormsApplication1
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            OrderHistory orderHistory = new OrderHistory();
-            orderHistory.Show();
+            
+                OrderHistory orderHistory = new OrderHistory();
+                orderHistory.Show();
+                this.Close();
+                Main.main.Hide();
+            
+        }
+
+        private void buttonChangeData_Click(object sender, EventArgs e)
+        {
+            ChangeData changeData = new ChangeData();
+            changeData.Show();
             this.Close();
             Main.main.Hide();
         }
