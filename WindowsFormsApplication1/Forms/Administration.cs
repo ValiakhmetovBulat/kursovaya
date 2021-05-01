@@ -63,6 +63,7 @@ namespace WindowsFormsApplication1
             buttonAdd.Enabled = false;
 
             textBoxUserClient.Visible = false;
+            comboBox2.Visible = true;
         }
 
         private string GetHashString(string s)
@@ -668,6 +669,7 @@ namespace WindowsFormsApplication1
         }
 
         public bool UserIsCreated = false;
+        public List<int> userIdList;
         private void buttonAdd_Click(object sender, EventArgs e)
         {
             using (UserContext db = new UserContext())
@@ -677,72 +679,99 @@ namespace WindowsFormsApplication1
                     User user = new User(textBox1.Text, GetHashString(textBox2.Text), textBox3.Text, "User", 0);
                     db.Users.Add(user);
                     db.SaveChanges();
+                    _formRefresh(0);
                 }
                 if (tabControl1.SelectedTab == tabControl1.TabPages[1] && textBox4.Text != null && textBox5.Text != null
                     && textBox6.Text != null && textBox7.Text != null && textBox8.Text != null && textBox9.Text != null
                     && dateTimePicker1 != null && textBoxUserClient.Text != null)
                 {
-                    foreach(User user in db.Users)
+                    foreach (Client client in db.Clients)
                     {
-                        if(textBoxUserClient.Text == user.Login)
-                        {
-                            UserIsCreated = true;
-                            UserKey = user.Id;
-                        }
+                        userIdList.Add(client.userId);
                     }
-                    if(!UserIsCreated)
+                    foreach (User user in db.Users)
                     {
-                        MessageBox.Show("Данного пользователя не существует", "Сообщение");
+                        if (textBoxUserClient.Text == user.Login)
+                        {
+                            if (userIdList.Contains(user.Id))
+                            {
+                                MessageBox.Show("Данный пользователь уже привязан к клиентской базе", "Сообщение");
+                            }
+                            else
+                            {
+                                //UserIsCreated = true;
+                                UserKey = user.Id;
+                                Client client = new Client(textBox4.Text, textBox5.Text, textBox6.Text, dateTimePicker1.Value,
+                            Convert.ToInt32(textBox7.Text), Convert.ToInt32(textBox8.Text), textBox9.Text, UserKey);
+                                db.Clients.Add(client);
+                                db.SaveChanges();
+                                _formRefresh(1);
+                            }
+                        }
+                        //    else
+                        //    {
+                        //        MessageBox.Show("Данного пользователя не существует", "Сообщение");
+                        //    }
+                        //}
+                        //if(!UserIsCreated)
+                        //{
+                        //    MessageBox.Show("Данного пользователя не существует", "Сообщение");
+                        //}
+                        //else
+                        //{
+                        //    Client client = new Client(textBox4.Text, textBox5.Text, textBox6.Text, dateTimePicker1.Value, 
+                        //        Convert.ToInt32(textBox7.Text), Convert.ToInt32(textBox8.Text),textBox9.Text, UserKey);
+                        //    db.Clients.Add(client);
+                        //    db.SaveChanges();
+                        //    _formRefresh(1);
+                        //}
+                    }
+                    if (tabControl1.SelectedTab == tabControl1.TabPages[2] && textBox10.Text != null && textBox11.Text != null)
+                    {
+                        Room room = new Room(textBox10.Text, Convert.ToInt32(textBox11.Text));
+                        db.Rooms.Add(room);
+                        db.SaveChanges();
+                        _formRefresh(2);
+                    }
+                    if (tabControl1.SelectedTab == tabControl1.TabPages[3] && textBox12.Text != null && textBox13.Text != null)
+                    {
+                        Service service = new Service(textBox12.Text, Convert.ToInt32(textBox13.Text), richTextBox1.Text);
+                        db.Services.Add(service);
+                        db.SaveChanges();
+                        _formRefresh(3);
+                    }
+                    if (tabControl1.SelectedTab == tabControl1.TabPages[4] && textBox14.Text != null && textBox15.Text != null
+                        && textBox16.Text != null && textBox17.Text != null && textBox18.Text != null && textBox19.Text != null
+                        && dateTimePicker2 != null && comboBox7.SelectedItem != null)
+                    {
+                        foreach (Position position in db.Positions)
+                        {
+                            if (comboBox7.Text == position.name)
+                            {
+                                PositionKey = position.id;
+                            }
+                        }
+
+                        Staff staff = new Staff(textBox19.Text, textBox18.Text, textBox17.Text, dateTimePicker2.Value,
+                                Convert.ToInt32(textBox16.Text), Convert.ToInt32(textBox15.Text), textBox14.Text, PositionKey);
+                        db.Staff.Add(staff);
+                        db.SaveChanges();
+                        _formRefresh(4);
+                    }
+                    if (tabControl1.SelectedTab == tabControl1.TabPages[5] && textBox21.Text != null && textBox22.Text != null)
+                    {
+                        Position position = new Position(textBox21.Text, Convert.ToInt32(textBox22.Text));
+                        db.Positions.Add(position);
+                        db.SaveChanges();
+                        _formRefresh(5);
                     }
                     else
                     {
-                        Client client = new Client(textBox4.Text, textBox5.Text, textBox6.Text, dateTimePicker1.Value, 
-                            Convert.ToInt32(textBox7.Text), Convert.ToInt32(textBox8.Text),textBox9.Text, UserKey);
-                        db.Clients.Add(client);
-                        db.SaveChanges();
+                        MessageBox.Show("Обнаружены пустые поля", "Сообщение");
                     }
                 }
-                if (tabControl1.SelectedTab == tabControl1.TabPages[2] && textBox10.Text != null && textBox11.Text != null)
-                {
-                    Room room = new Room(textBox10.Text,Convert.ToInt32(textBox11.Text));
-                    db.Rooms.Add(room);
-                    db.SaveChanges();
-                }
-                if(tabControl1.SelectedTab == tabControl1.TabPages[3] && textBox12.Text != null && textBox13.Text != null)
-                {
-                    Service service = new Service(textBox12.Text, Convert.ToInt32(textBox13.Text), richTextBox1.Text);
-                    db.Services.Add(service);
-                    db.SaveChanges();
-                }
-                if(tabControl1.SelectedTab == tabControl1.TabPages[4] && textBox14.Text != null && textBox15.Text != null
-                    && textBox16.Text != null && textBox17.Text != null && textBox18.Text != null && textBox19.Text != null
-                    && dateTimePicker2 != null && comboBox7.SelectedItem != null)
-                {
-                    foreach(Position position in db.Positions)
-                    {
-                        if(comboBox7.Text == position.name)
-                        {
-                            PositionKey = position.id;
-                        }
-                    }
 
-                    Staff staff = new Staff(textBox19.Text, textBox18.Text, textBox17.Text, dateTimePicker2.Value,
-                            Convert.ToInt32(textBox16.Text), Convert.ToInt32(textBox15.Text), textBox14.Text, PositionKey);
-                    db.Staff.Add(staff);
-                    db.SaveChanges();
-                }
-                if(tabControl1.SelectedTab == tabControl1.TabPages[5] && textBox21.Text != null && textBox22.Text != null)
-                {
-                    Position position = new Position(textBox21.Text, Convert.ToInt32(textBox22.Text));
-                    db.Positions.Add(position);
-                    db.SaveChanges();
-                }
-                else
-                {
-                    MessageBox.Show("Обнаружены пустые поля", "Сообщение");
-                }
             }
-            
         }
 
         private void radioButton4_CheckedChanged(object sender, EventArgs e)
@@ -776,6 +805,35 @@ namespace WindowsFormsApplication1
             dateTimePicker1.Enabled = true;
             dateTimePicker2.Enabled = true;
 
+            comboBox1.Enabled = false;
+            comboBox2.Enabled = false;
+            comboBox3.Enabled = false;
+            comboBox4.Enabled = false;
+            comboBox5.Enabled = false;
+            comboBox6.Enabled = false;
+
+            textBox1.Text = null;
+            textBox2.Text = null;
+            textBox3.Text = null;
+            textBox4.Text = null;
+            textBox5.Text = null;
+            textBox6.Text = null;
+            textBox7.Text = null;
+            textBox8.Text = null;
+            textBox9.Text = null;
+            textBox10.Text = null;
+            textBox11.Text = null;
+            textBox12.Text = null;
+            textBox13.Text = null;
+            textBox14.Text = null;
+            textBox15.Text = null;
+            textBox16.Text = null;
+            textBox17.Text = null;
+            textBox18.Text = null;
+            textBox19.Text = null;
+            textBox21.Text = null;
+            textBox22.Text = null;
+          
             comboBox2.Visible = false;
             textBoxUserClient.Visible = true;
         }

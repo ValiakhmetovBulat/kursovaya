@@ -73,6 +73,8 @@ namespace WindowsFormsApplication1
             //    db.Users.Add(user);
             //    db.SaveChanges();
             //}
+
+           
         }
 
         private void Form1_Load(object sender, EventArgs e)

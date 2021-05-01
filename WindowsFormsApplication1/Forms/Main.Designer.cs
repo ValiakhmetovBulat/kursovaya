@@ -146,7 +146,7 @@
             this.label5.ForeColor = System.Drawing.Color.White;
             this.label5.Location = new System.Drawing.Point(293, 63);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(25, 20);
+            this.label5.Size = new System.Drawing.Size(14, 20);
             this.label5.TabIndex = 9;
             this.label5.Text = "👁";
             this.label5.Click += new System.EventHandler(this.label5_Click);
@@ -170,7 +170,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.ClientSize = new System.Drawing.Size(330, 152);
+            this.ClientSize = new System.Drawing.Size(330, 155);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
