@@ -104,6 +104,9 @@
             this.button1 = new System.Windows.Forms.Button();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.comboBox8 = new System.Windows.Forms.ComboBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.textBox20 = new System.Windows.Forms.TextBox();
             this.tabPage6.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.tabPage4.SuspendLayout();
@@ -207,6 +210,9 @@
             // tabPage5
             // 
             this.tabPage5.BackColor = System.Drawing.Color.GhostWhite;
+            this.tabPage5.Controls.Add(this.textBox20);
+            this.tabPage5.Controls.Add(this.label29);
+            this.tabPage5.Controls.Add(this.comboBox8);
             this.tabPage5.Controls.Add(this.comboBox7);
             this.tabPage5.Controls.Add(this.label24);
             this.tabPage5.Controls.Add(this.label25);
@@ -226,7 +232,7 @@
             this.tabPage5.Controls.Add(this.label23);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(311, 361);
+            this.tabPage5.Size = new System.Drawing.Size(311, 401);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "STAFF";
             // 
@@ -386,7 +392,7 @@
             this.tabPage4.Controls.Add(this.label16);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(311, 361);
+            this.tabPage4.Size = new System.Drawing.Size(311, 388);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "SERVICES";
             // 
@@ -538,7 +544,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(311, 361);
+            this.tabPage2.Size = new System.Drawing.Size(311, 388);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "CLIENTS";
             // 
@@ -693,7 +699,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(311, 361);
+            this.tabPage1.Size = new System.Drawing.Size(311, 388);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "USERS";
             // 
@@ -814,7 +820,7 @@
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.Padding = new System.Drawing.Point(0, 0);
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(319, 387);
+            this.tabControl1.Size = new System.Drawing.Size(319, 427);
             this.tabControl1.TabIndex = 61;
             // 
             // buttonRefresh
@@ -832,7 +838,7 @@
             // button1
             // 
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(487, 362);
+            this.button1.Location = new System.Drawing.Point(492, 402);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(92, 34);
             this.button1.TabIndex = 63;
@@ -864,12 +870,36 @@
             this.radioButton4.UseVisualStyleBackColor = true;
             this.radioButton4.CheckedChanged += new System.EventHandler(this.radioButton4_CheckedChanged);
             // 
+            // comboBox8
+            // 
+            this.comboBox8.FormattingEnabled = true;
+            this.comboBox8.Location = new System.Drawing.Point(82, 364);
+            this.comboBox8.Name = "comboBox8";
+            this.comboBox8.Size = new System.Drawing.Size(138, 21);
+            this.comboBox8.TabIndex = 66;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(79, 349);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(33, 13);
+            this.label29.TabIndex = 67;
+            this.label29.Text = "User:";
+            // 
+            // textBox20
+            // 
+            this.textBox20.Location = new System.Drawing.Point(82, 365);
+            this.textBox20.Name = "textBox20";
+            this.textBox20.Size = new System.Drawing.Size(138, 21);
+            this.textBox20.TabIndex = 68;
+            // 
             // Administration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LavenderBlush;
-            this.ClientSize = new System.Drawing.Size(596, 404);
+            this.ClientSize = new System.Drawing.Size(596, 443);
             this.Controls.Add(this.radioButton4);
             this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.button1);
@@ -983,5 +1013,8 @@
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.RadioButton radioButton4;
         private System.Windows.Forms.TextBox textBoxUserClient;
+        private System.Windows.Forms.TextBox textBox20;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.ComboBox comboBox8;
     }
 }

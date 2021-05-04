@@ -53,6 +53,8 @@ namespace WindowsFormsApplication1
             textBox17.Enabled = false;
             textBox18.Enabled = false;
             textBox19.Enabled = false;
+            textBox20.Enabled = false;
+            comboBox8.Visible = false;
             comboBox7.Enabled = false;
             textBox21.Enabled = false;
             textBox22.Enabled = false;
@@ -116,6 +118,17 @@ namespace WindowsFormsApplication1
                     comboBox6.Items.Add(position.name);
                     comboBox7.Items.Add(position.name);
                 }
+                //foreach (User user1 in users)
+                //{
+                //    foreach (Client client in db.Clients)
+                //        if (user1.Id == client.userId) 
+                //        {
+                //            if (user1.Role != "User")
+                //            {
+                //                comboBox8.Items.Add(user1.Login);
+                //            }
+                //        }                                   
+                //}
             }
         }
         public User itemUser;
@@ -561,6 +574,14 @@ namespace WindowsFormsApplication1
                         //var item = db.Positions.Find(staff.positionId);
                         //comboBox7.Text = item.name;
                         dateTimePicker2.Value = staff.date_of_birth;
+                        
+                        foreach(User user in users)
+                        {
+                            if (user.Id == staff.userId)
+                            {
+                                textBox20.Text = user.Login;
+                            }
+                        }
                     }
                 }
             }
@@ -586,8 +607,25 @@ namespace WindowsFormsApplication1
 
         private void radioButton3_CheckedChanged(object sender, EventArgs e)
         {
+            using (UserContext db = new UserContext()) 
+            {
+                foreach (Staff staff in db.Staff)
+                    if (staff.name == comboBox5.SelectedItem.ToString())
+                    {
+                        foreach (User user in users)
+                        {
+                            if (user.Id == staff.userId)
+                            {
+                                textBox20.Text = user.Login;
+                            }
+                        }
+                    }
+            }
             comboBox2.Visible = true;
             textBoxUserClient.Visible = false;
+            textBox20.Visible = true;
+            comboBox8.Visible = false;
+            textBox20.Enabled = false;
 
             buttonDelete.Enabled = true;
             buttonChange.Enabled = false;
@@ -628,8 +666,11 @@ namespace WindowsFormsApplication1
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
+            
             comboBox2.Visible = true;
             textBoxUserClient.Visible = false;
+            textBox20.Visible = true;
+            comboBox8.Visible = false;
 
             buttonDelete.Enabled = false;
             buttonChange.Enabled = false;
@@ -641,6 +682,7 @@ namespace WindowsFormsApplication1
             comboBox4.Enabled = true;
             comboBox5.Enabled = true;
             comboBox6.Enabled = true;
+            
 
             textBox1.Enabled = false;
             textBox2.Enabled = false;
@@ -661,6 +703,7 @@ namespace WindowsFormsApplication1
             textBox17.Enabled = false;
             textBox18.Enabled = false;
             textBox19.Enabled = false;
+            textBox20.Enabled = false;
             comboBox7.Enabled = false;
             textBox21.Enabled = false;
             textBox22.Enabled = false;
@@ -670,8 +713,12 @@ namespace WindowsFormsApplication1
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
+           
             comboBox2.Visible = true;
             textBoxUserClient.Visible = false;
+            textBox20.Visible = false;
+            comboBox8.Visible = true;
+            comboBox8.Enabled = true;
 
             buttonDelete.Enabled = false;
             buttonAdd.Enabled = false;
@@ -849,9 +896,20 @@ namespace WindowsFormsApplication1
 
         private void radioButton4_CheckedChanged(object sender, EventArgs e)
         {
+            using (UserContext db = new UserContext())
+            {
+                foreach (User user in db.Users)
+                {
+                    comboBox8.Items.Add(user.Login);
+                }
+            }
+
             buttonChange.Enabled = false;
             buttonDelete.Enabled = false;
             buttonAdd.Enabled = true;
+            comboBox8.Enabled = true;
+            textBox20.Visible = false;
+            comboBox8.Visible = true;
 
             textBox1.Enabled = true;
             textBox2.Enabled = true;

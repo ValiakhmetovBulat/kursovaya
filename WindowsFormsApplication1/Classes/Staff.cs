@@ -17,6 +17,7 @@ namespace WindowsFormsApplication1
         public int p_number { get; set; }
         public string phone { get; set; }
         public int positionId { get; set; }
+        public int userId { get; set; }
         public Staff() { }
         public Staff(string surname, string name, string patr, DateTime date_of_birth, int p_series, int p_number, string phone, int positionId)
         {
