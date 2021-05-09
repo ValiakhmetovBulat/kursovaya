@@ -154,17 +154,40 @@ namespace WindowsFormsApplication1
             }
         }
         public int totalPrice = 0;
+        List<Order> checkedOrders = new List<Order>();
         private void checkedListBoxServices_SelectedIndexChanged(object sender, EventArgs e)
-        {            
-            
+        {
+            checkedOrders.Clear();
+            using (UserContext db = new UserContext())
+            {
+                for (int i = 0; i < checkedListBoxServices.CheckedItems.Count; i++)
+                {
+                    int count = 1;
+                    string checkedOrder = checkedListBoxServices.CheckedItems[i].ToString();
+                    string orderId = "";
+                    while (checkedOrder[count] != ']')
+                    {
+                        orderId += checkedOrder[count];
+                        count++;
+                    }
+                    foreach (Order order in db.Orders)
+                    {
+                        if (order.id == Convert.ToInt32(orderId))
+                        {
+                            checkedOrders.Add(order);
+                            
+                        }
+                    }
+                }                
+            }
             totalPrice = 0;
             if (checkedListBoxServices.CheckedItems.Count != 0)
             {               
-                    for (int i = 0; i < checkedListBoxServices.CheckedItems.Count; i++)
-                    {
-                        totalPrice += orders[i].totalPrice;
-                        textBoxTotalPrice.Text = Convert.ToString(totalPrice);
-                    }                
+                    foreach(Order order in checkedOrders)
+                {
+                    totalPrice += order.totalPrice;
+                    textBoxTotalPrice.Text = totalPrice.ToString();
+                }             
             }
             else
             {
@@ -203,6 +226,7 @@ namespace WindowsFormsApplication1
             document.InsertParagraph("Итого: " + totalPrice.ToString()).Font("Times New Roman").FontSize(14).Alignment = Alignment.center;
             document.Save();
         }
+        List<Order> ordersPaid = new List<Order>();
         private void buttonPayServices_Click(object sender, EventArgs e)
         {
             
@@ -237,15 +261,29 @@ namespace WindowsFormsApplication1
                                 {
 
                                 }
-
-                                order.isPaid = true;
-                                checkedListBoxServices.Items.Remove(checkedListBoxServices.CheckedItems[i]);
-                                orders.Remove(order);                                                            
+                                ordersPaid.Add(order);
+                                                                                        
                                 
                             }
-                        }
-                        
+                        }                                                
                     }
+                    foreach(Order order1 in db.Orders)
+                    {
+                        foreach (Order order in ordersPaid)
+                        {
+                            if (order1.id == order.id)
+                            {
+                                order1.isPaid = true;
+                            }
+                        }
+                    }
+                    checkedListBoxServices.Items.Clear();
+                    ordersPaid.Clear();
+                    trg = false;
+                    this.Close();
+                    WelcomeForm w = new WelcomeForm();
+                    w.Show();
+                    
                 }
                 else
                 {
@@ -259,7 +297,7 @@ namespace WindowsFormsApplication1
         {
             using (UserContext db = new UserContext())
             {
-                for (int i = 0; i < checkedListBoxServices.CheckedItems.Count; i++)
+                for (int i = 0; i <= checkedListBoxServices.CheckedItems.Count; i++)
                 {
                     int count = 1;
                     string checkedOrder = checkedListBoxServices.CheckedItems[i].ToString();
