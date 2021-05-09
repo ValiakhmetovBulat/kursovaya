@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 namespace MyLib
 {
     public partial class EntityModelContainer : DbContext
@@ -14,7 +15,7 @@ namespace MyLib
         public DbSet<Service> Services { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Staff> Staff { get; set; }
-        public DbSet<Classes.Position> Positions { get; set; }
+        public DbSet<Position> Positions { get; set; }
         
     }
 }

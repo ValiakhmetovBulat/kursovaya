@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsFormsApplication1.Classes;
 using WindowsFormsApplication1.Forms;
+using Xceed.Document.NET;
+using Xceed.Words.NET;
+using Xceed;
 
 namespace WindowsFormsApplication1
 {
@@ -22,13 +25,14 @@ namespace WindowsFormsApplication1
         public int RoomKey = 0;
         public int ServiceKey = 0;
         public string RoomName = "";
+        public bool trg = true;
         public string ServiceName = "";
         public int TotalPrice = 0;
         public List<Order> orders = new List<Order>();
         public WelcomeForm()
         {
             InitializeComponent();
-           
+            trg = true;
         }
 
         private void WelcomeForm_Load(object sender, EventArgs e)
@@ -99,8 +103,14 @@ namespace WindowsFormsApplication1
 
         private void WelcomeForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Main.main.Show();
-            
+            if (trg)
+            {
+                Main.main.Show();
+            }   
+            else
+            {
+
+            }
             //MessageBox.Show("Выберите один из вариантов","Сообщение",MessageBoxButtons.YesNo,MessageBoxIcon.Information,MessageBoxDefaultButton.Button1,MessageBoxOptions.DefaultDesktopOnly);
         }
 
@@ -113,6 +123,7 @@ namespace WindowsFormsApplication1
         {
             CashAccount CashAcc = new CashAccount();
             CashAcc.Show();
+            trg = false;
             this.Close();
         }
         public bool IsCreated = false;
@@ -175,7 +186,23 @@ namespace WindowsFormsApplication1
             //}
 
         }
-
+        private void OutputFile()
+        {
+            string pathDocument = AppDomain.CurrentDomain.BaseDirectory + "first.docx";
+            DocX document = DocX.Create(pathDocument);
+            document.InsertParagraph("ЧЕК").Bold().Font("Times New Roman").FontSize(18).Alignment = Alignment.center;
+            Table table = document.AddTable(checkedListBoxServices.CheckedItems.Count, 1);
+            table.Alignment = Alignment.center;
+            table.Design = TableDesign.TableGrid;
+            for (int i = 0; i < checkedListBoxServices.CheckedItems.Count; i++)
+            {
+                table.Rows[i].Cells[0].Paragraphs[0].Append(checkedListBoxServices.CheckedItems[i].ToString()).Font("Times New Roman").FontSize(14);
+               
+            }
+            document.InsertParagraph().InsertTableAfterSelf(table);
+            document.InsertParagraph("Итого: " + totalPrice.ToString()).Font("Times New Roman").FontSize(14).Alignment = Alignment.center;
+            document.Save();
+        }
         private void buttonPayServices_Click(object sender, EventArgs e)
         {
             
@@ -196,14 +223,25 @@ namespace WindowsFormsApplication1
                             orderId += checkedOrder[count];
                             count++;
                         }
-                        MessageBox.Show(orderId);
+                        
                         foreach (Order order in db.Orders)
                         {
                             if (order.id == Convert.ToInt32(orderId))
                             {
+                                DialogResult dialogResult = MessageBox.Show("Сохранить чек ?", "Сообщение", MessageBoxButtons.YesNo);
+                                if (dialogResult == DialogResult.Yes)
+                                {
+                                    OutputFile();
+                                }
+                                else if (dialogResult == DialogResult.No)
+                                {
+
+                                }
+
                                 order.isPaid = true;
                                 checkedListBoxServices.Items.Remove(checkedListBoxServices.CheckedItems[i]);
-                                orders.Remove(order);
+                                orders.Remove(order);                                                            
+                                
                             }
                         }
                         

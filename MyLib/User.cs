@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace MyLib
 {
+    [Serializable]
     public class User
     {
-        [Serializable]
+        
         public int Id { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }

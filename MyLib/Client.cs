@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace MyLib
 {
+    [Serializable]
     public class Client
     {
-        [Serializable]
+        
         public int id { get; set; }
         public string surname { get; set; }
         public string name { get; set; }

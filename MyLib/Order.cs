@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace MyLib
 {
+    [Serializable]
     public class Order
     {
-        [Serializable]
+        
         public int id { get; set; }
         public DateTime dateOfArriving { get; set; }
         public DateTime dateOfLeaving { get; set; }
