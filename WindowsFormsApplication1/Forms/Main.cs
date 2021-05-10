@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Security.Cryptography;
 using WindowsFormsApplication1.Classes;
-
+using System.Threading.Tasks;
+using System.Net.Sockets;
 namespace WindowsFormsApplication1
 {
     public partial class Main : Form
@@ -17,16 +18,22 @@ namespace WindowsFormsApplication1
 
         public static Main main;
         public static User user1;
+        TcpClient client = new TcpClient("127.0.0.1", 8888);
+        Byte[] data;
+        NetworkStream stream;
+        MyLib.Message m, m1, m2;
+        MyLib.ComplexMessage cm = new MyLib.ComplexMessage();
         public Main()
         {
             InitializeComponent();
             main = this;
             Registration.main = this;
             PassRecovery.main = this;
-            
             label3.Visible = false;
             label4.Visible = false;
             label6.Visible = false;
+
+            this.stream = client.GetStream();
 
             //using (UserContext db = new UserContext())
             //{
@@ -74,7 +81,7 @@ namespace WindowsFormsApplication1
             //    db.SaveChanges();
             //}
 
-           
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -157,6 +164,36 @@ namespace WindowsFormsApplication1
                     
                     if (textBoxLogin.Text == user.Login && this.GetHashString(textBoxPassword.Text) == user.Password)
                         {
+                            this.m1 = MyLib.SerializeAndDeserialize.Serialize(textBoxLogin.Text);
+                            this.m2 = MyLib.SerializeAndDeserialize.Serialize(textBoxPassword.Text);
+                            this.cm.First = this.m1;
+                            this.cm.Second = this.m2;
+                            this.cm.NumberStatus = 1;
+                            this.m = MyLib.SerializeAndDeserialize.Serialize(this.cm);
+                            data = this.m.Data;
+                            stream.Write(data, 0, data.Length);
+                            if (stream.CanRead)
+                            {
+                                int numberOfBytesRead = 0;
+                                byte[] readingData = new byte[6297630];
+                                do
+                                {
+                                    numberOfBytesRead = stream.Read(readingData, 0, readingData.Length);
+                                }
+                                while (stream.DataAvailable);
+                                this.m.Data = readingData;
+                                this.cm = (MyLib.ComplexMessage)MyLib.SerializeAndDeserialize.Deserialize(m);
+                                if (cm.NumberStatus == 2)
+                                {
+                                    MyLib.ComplexMessage complexMessage = (MyLib.ComplexMessage)MyLib.SerializeAndDeserialize.Deserialize(m);
+                                    User user1 = (User)MyLib.SerializeAndDeserialize.Deserialize(complexMessage.First);
+
+                                }
+                                else if (cm.NumberStatus == 3)
+                                {
+                                    MessageBox.Show("Неверный логин или пароль");
+                                }
+                            }
                             MessageBox.Show("Вход выполнен","Авторизация...");
                             user1 = user;
                             main.Hide();

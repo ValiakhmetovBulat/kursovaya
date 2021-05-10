@@ -11,13 +11,20 @@ using System.Windows.Forms;
 using System.Security.Cryptography;
 using System.Net;
 using System.Net.Mail;
-
+using System.Threading.Tasks;
+using System.Net.Sockets;
 namespace WindowsFormsApplication1
 {
     public partial class Registration : Form
     {
         public static Main main;
         public static Registration registration;
+        private byte[] imageBytes;
+        private TcpClient client = new TcpClient("127.0.0.1", 8888);
+        private Byte[] data;
+        private NetworkStream stream;
+        private MyLib.Message m1, m2, m;
+        private MyLib.ComplexMessage cm = new MyLib.ComplexMessage();
         public Registration()
         {
             InitializeComponent();
@@ -26,6 +33,18 @@ namespace WindowsFormsApplication1
             label3.Visible = false;
             label4.Visible = false;
             label6.Visible = false;
+        }
+
+        private void InitComponentMessage(object
+first, object second, int status)
+        {
+            this.m1 = MyLib.SerializeAndDeserialize.Serialize(first);
+            this.m2 = MyLib.SerializeAndDeserialize.Serialize(second);
+            cm.First = m1;
+            cm.Second = m2;
+            cm.NumberStatus = status;
+            m = MyLib.SerializeAndDeserialize.Serialize(cm);
+            this.data = m.Data;
         }
 
         private void Registration_FormClosed(object sender, FormClosedEventArgs e)
@@ -125,6 +144,10 @@ namespace WindowsFormsApplication1
                         try
                         {
                             User user = new User(textBoxLogin.Text, this.GetHashString(textBoxPassword.Text), textBoxEmail.Text, "User", 0);
+                            this.InitComponentMessage(client, user,
+0);
+                            stream.Write(data, 0, data.Length);
+                            stream.Flush();
 
                             MailAddress from = new MailAddress("ii.oio.ooo@mail.ru", "kriper2004");
                             MailAddress to = new MailAddress(textBoxEmail.Text);

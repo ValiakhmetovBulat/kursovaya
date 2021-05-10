@@ -20,7 +20,7 @@ namespace MyLib
             {
                 formatter.Serialize(memoryStream,
                 anySerializableObject);
-                return new Message{Data = memoryStream.ToArray()};
+                return new Message { Data = memoryStream.ToArray() };
             }
         }
         public static object Deserialize(Message message)
