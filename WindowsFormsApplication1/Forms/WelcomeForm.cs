@@ -33,10 +33,7 @@ namespace WindowsFormsApplication1
         {
             InitializeComponent();
             trg = true;
-        }
 
-        private void WelcomeForm_Load(object sender, EventArgs e)
-        {
             checkedListBoxServices.Items.Clear();
             if (client1 == null)
             {
@@ -46,7 +43,7 @@ namespace WindowsFormsApplication1
             {
                 buttonHistory.Enabled = true;
             }
-            bool trg = true;
+            bool trg1 = true;
             using (UserContext db = new UserContext())
             {
                 textBoxCash.Text = user.sum.ToString();
@@ -55,15 +52,15 @@ namespace WindowsFormsApplication1
                     if (Main.user1.Id == client.userId)
                     {
                         client1 = client;
-                        trg = true;
+                        trg1 = true;
                         break;
                     }
                     else
                     {
-                        trg = false;
+                        trg1 = false;
                     }
                 }
-                if (trg)
+                if (trg1)
                 {
                     foreach (Order order1 in db.Orders)
                     {
@@ -73,7 +70,7 @@ namespace WindowsFormsApplication1
                         }
                     }
                 }
-                
+
                 foreach (Order order in orders)
                 {
                     if (!order.isPaid && !order.isDeleted)
@@ -101,6 +98,11 @@ namespace WindowsFormsApplication1
             }
         }
 
+        private void WelcomeForm_Load(object sender, EventArgs e)
+        {
+            
+        }
+
         private void WelcomeForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (trg)
@@ -109,7 +111,7 @@ namespace WindowsFormsApplication1
             }   
             else
             {
-
+               
             }
             //MessageBox.Show("Выберите один из вариантов","Сообщение",MessageBoxButtons.YesNo,MessageBoxIcon.Information,MessageBoxDefaultButton.Button1,MessageBoxOptions.DefaultDesktopOnly);
         }
@@ -280,10 +282,9 @@ namespace WindowsFormsApplication1
                     checkedListBoxServices.Items.Clear();
                     ordersPaid.Clear();
                     trg = false;
-                    this.Close();
-                    WelcomeForm w = new WelcomeForm();
-                    w.Show();
-                    
+                    Success success = new Success();
+                    success.Show();
+                    this.Close();                                        
                 }
                 else
                 {
