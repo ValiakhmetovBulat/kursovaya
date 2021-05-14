@@ -56,6 +56,7 @@ namespace WindowsFormsApplication1.Forms
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Success";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Success_FormClosed);
+            this.Load += new System.EventHandler(this.Success_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

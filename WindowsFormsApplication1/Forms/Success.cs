@@ -22,5 +22,10 @@ namespace WindowsFormsApplication1.Forms
             WelcomeForm welcome = new WelcomeForm();
             welcome.Show();
         }
+
+        private void Success_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

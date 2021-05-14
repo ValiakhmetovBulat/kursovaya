@@ -12,14 +12,14 @@ namespace WindowsFormsApplication1.Forms
 {
     public partial class CashAccount : Form
     {
-        public static CashAccount CashAcc;
+     
        
         public User user = Main.user1;
         public CashAccount()
         {
             InitializeComponent();
             radioButtonRuble.Checked = true;
-            CashAcc = this;
+            
         }
 
         private void CashAccount_Load(object sender, EventArgs e)
@@ -48,7 +48,7 @@ namespace WindowsFormsApplication1.Forms
                     {
                         user.sum += cash * 90;
                     }
-                    MessageBox.Show("+деньги");
+                    MessageBox.Show("Счет пополнен");
                     textBoxAddCash.Text = null;
                     db.SaveChanges();
                 }
@@ -63,8 +63,7 @@ namespace WindowsFormsApplication1.Forms
         {
             WelcomeForm welcomeForm = new WelcomeForm();
             welcomeForm.Show();
-            welcomeForm.textBoxCash.Text = user.sum.ToString();
-            CashAcc.Hide();
+            
         }
 
         private void textBoxAddCash_KeyPress(object sender, KeyPressEventArgs e)

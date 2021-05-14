@@ -46,7 +46,7 @@ namespace WindowsFormsApplication1
             bool trg1 = true;
             using (UserContext db = new UserContext())
             {
-                textBoxCash.Text = user.sum.ToString();
+                //textBoxCash.Text = user.sum.ToString();
                 foreach (Client client in db.Clients)
                 {
                     if (Main.user1.Id == client.userId)
@@ -100,7 +100,17 @@ namespace WindowsFormsApplication1
 
         private void WelcomeForm_Load(object sender, EventArgs e)
         {
-            
+            using (UserContext db = new UserContext())
+            {
+                foreach (User user1 in db.Users)
+                {
+                    if (user1.Id == client1.userId) {
+                        textBoxCash.Text = user1.sum.ToString();
+                        user = user1;
+                    }
+                }
+                
+            }
         }
 
         private void WelcomeForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -123,10 +133,11 @@ namespace WindowsFormsApplication1
        
         private void buttonAddCash_Click(object sender, EventArgs e)
         {
-            CashAccount CashAcc = new CashAccount();
-            CashAcc.Show();
             trg = false;
             this.Close();
+            CashAccount CashAcc = new CashAccount();
+            CashAcc.Show();           
+           
         }
         public bool IsCreated = false;
         private void buttonBookARoom_Click(object sender, EventArgs e)
@@ -236,8 +247,15 @@ namespace WindowsFormsApplication1
             {
                 if (Convert.ToInt32(textBoxCash.Text) > totalPrice)
                 {
-                    user.sum -= totalPrice;
-                    textBoxCash.Text = user.sum.ToString();
+                    foreach(User user1 in db.Users)
+                    {
+                        if (user1.Id == client1.userId)
+                        {
+                            user1.sum -= totalPrice;
+                            textBoxCash.Text = user1.sum.ToString();
+                        }
+                    }
+                    
 
                     for (int i = 0; i < checkedListBoxServices.CheckedItems.Count; i++)
                     {

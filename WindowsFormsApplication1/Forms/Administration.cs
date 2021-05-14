@@ -461,17 +461,20 @@ namespace WindowsFormsApplication1
             textBox1.Text = "";
             textBox2.Text = "";
             textBox3.Text = "";
-            using (UserContext db = new UserContext())
+            if (comboBox1.SelectedItem != null)
             {
-                foreach (User user in db.Users)
+                using (UserContext db = new UserContext())
                 {
-                    if (user.Login == comboBox1.SelectedItem.ToString())
+                    foreach (User user in db.Users)
                     {
-                        UserKey = user.Id;
-                        textBox1.Text = user.Login;
-                        textBox2.Text = user.Password;
-                        textBox3.Text = user.Email;
-                    }                    
+                        if (user.Login == comboBox1.SelectedItem.ToString())
+                        {
+                            UserKey = user.Id;
+                            textBox1.Text = user.Login;
+                            textBox2.Text = user.Password;
+                            textBox3.Text = user.Email;
+                        }
+                    }
                 }
             }
         }
@@ -483,28 +486,31 @@ namespace WindowsFormsApplication1
             textBox7.Text = "";
             textBox8.Text = "";
             textBox9.Text = "";
-            using (UserContext db = new UserContext())
+            if (comboBox2.SelectedItem != null)
             {
-                string login = "";
-                foreach (Client client in db.Clients)
+                using (UserContext db = new UserContext())
                 {
-                    foreach (User user in users)
+                    string login = "";
+                    foreach (Client client in db.Clients)
                     {
-                        if (client.userId == user.Id)
+                        foreach (User user in users)
                         {
-                            login = user.Login;
+                            if (client.userId == user.Id)
+                            {
+                                login = user.Login;
+                            }
                         }
-                    }
-                    if (login == comboBox2.SelectedItem.ToString())
-                    {
-                        ClientKey = client.id;
-                        textBox4.Text = client.surname;
-                        textBox5.Text = client.name;
-                        textBox6.Text = client.patr;
-                        textBox7.Text = Convert.ToString(client.p_series);
-                        textBox8.Text = Convert.ToString(client.p_number);
-                        textBox9.Text = client.phone;
-                        dateTimePicker1.Value = client.date_of_birth;
+                        if (login == comboBox2.SelectedItem.ToString())
+                        {
+                            ClientKey = client.id;
+                            textBox4.Text = client.surname;
+                            textBox5.Text = client.name;
+                            textBox6.Text = client.patr;
+                            textBox7.Text = Convert.ToString(client.p_series);
+                            textBox8.Text = Convert.ToString(client.p_number);
+                            textBox9.Text = client.phone;
+                            dateTimePicker1.Value = client.date_of_birth;
+                        }
                     }
                 }
             }
@@ -516,15 +522,18 @@ namespace WindowsFormsApplication1
         {
             textBox10.Text = "";
             textBox11.Text = "";
-            using (UserContext db = new UserContext())
+            if (comboBox3.SelectedItem != null)
             {
-                foreach (Room room in db.Rooms)
+                using (UserContext db = new UserContext())
                 {
-                    if (room.category == comboBox3.SelectedItem.ToString())
+                    foreach (Room room in db.Rooms)
                     {
-                        RoomKey = room.id;
-                        textBox10.Text = room.category;
-                        textBox11.Text = Convert.ToString(room.price);
+                        if (room.category == comboBox3.SelectedItem.ToString())
+                        {
+                            RoomKey = room.id;
+                            textBox10.Text = room.category;
+                            textBox11.Text = Convert.ToString(room.price);
+                        }
                     }
                 }
             }
@@ -535,17 +544,20 @@ namespace WindowsFormsApplication1
             textBox12.Text = "";
             textBox13.Text = "";
             richTextBox1.Text = "";
-            using (UserContext db = new UserContext())
+            if (comboBox4.SelectedItem != null)
             {
-                foreach (Service service in db.Services)
+                using (UserContext db = new UserContext())
                 {
-                    if (service.name == comboBox4.SelectedItem.ToString())
+                    foreach (Service service in db.Services)
                     {
-                        ServiceKey = service.id;
-                        textBox12.Text = service.name;
-                        textBox13.Text = Convert.ToString(service.price);
-                        richTextBox1.Text = service.description;
-                    }                  
+                        if (service.name == comboBox4.SelectedItem.ToString())
+                        {
+                            ServiceKey = service.id;
+                            textBox12.Text = service.name;
+                            textBox13.Text = Convert.ToString(service.price);
+                            richTextBox1.Text = service.description;
+                        }
+                    }
                 }
             }
         }
@@ -558,28 +570,31 @@ namespace WindowsFormsApplication1
             textBox17.Text = "";
             textBox18.Text = "";
             textBox19.Text = "";
-            using (UserContext db = new UserContext())
+            if (comboBox5.SelectedItem != null)
             {
-                foreach (Staff staff in db.Staff)
+                using (UserContext db = new UserContext())
                 {
-                    if (staff.name == comboBox5.SelectedItem.ToString())
+                    foreach (Staff staff in db.Staff)
                     {
-                        StaffKey = staff.id;
-                        textBox14.Text = staff.phone;
-                        textBox15.Text = Convert.ToString(staff.p_number);
-                        textBox16.Text = Convert.ToString(staff.p_series);
-                        textBox17.Text = staff.patr;
-                        textBox18.Text = staff.name;
-                        textBox19.Text = staff.surname;
-                        //var item = db.Positions.Find(staff.positionId);
-                        //comboBox7.Text = item.name;
-                        dateTimePicker2.Value = staff.date_of_birth;
-                        
-                        foreach(User user in users)
+                        if (staff.name == comboBox5.SelectedItem.ToString())
                         {
-                            if (user.Id == staff.userId)
+                            StaffKey = staff.id;
+                            textBox14.Text = staff.phone;
+                            textBox15.Text = Convert.ToString(staff.p_number);
+                            textBox16.Text = Convert.ToString(staff.p_series);
+                            textBox17.Text = staff.patr;
+                            textBox18.Text = staff.name;
+                            textBox19.Text = staff.surname;
+                            //var item = db.Positions.Find(staff.positionId);
+                            //comboBox7.Text = item.name;
+                            dateTimePicker2.Value = staff.date_of_birth;
+
+                            foreach (User user in users)
                             {
-                                textBox20.Text = user.Login;
+                                if (user.Id == staff.userId)
+                                {
+                                    textBox20.Text = user.Login;
+                                }
                             }
                         }
                     }
@@ -591,16 +606,19 @@ namespace WindowsFormsApplication1
         {
             textBox21.Text = "";
             textBox22.Text = "";
-            using (UserContext db = new UserContext())
+            if (comboBox6.SelectedItem != null)
             {
-                foreach (Position position in db.Positions)
+                using (UserContext db = new UserContext())
                 {
-                    if (position.name == comboBox6.SelectedItem.ToString())
+                    foreach (Position position in db.Positions)
                     {
-                        PositionKey = position.id;
-                        textBox21.Text = position.name;
-                        textBox22.Text = Convert.ToString(position.salary);
-                    }                    
+                        if (position.name == comboBox6.SelectedItem.ToString())
+                        {
+                            PositionKey = position.id;
+                            textBox21.Text = position.name;
+                            textBox22.Text = Convert.ToString(position.salary);
+                        }
+                    }
                 }
             }
         }
