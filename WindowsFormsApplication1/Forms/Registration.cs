@@ -141,8 +141,8 @@ first, object second, int status)
                     }
                     if (count == 0)
                     {
-                        try
-                        {
+                        //try
+                        //{
                             User user = new User(textBoxLogin.Text, this.GetHashString(textBoxPassword.Text), textBoxEmail.Text, "User", 0);
                             this.InitComponentMessage(client, user,
 0);
@@ -170,14 +170,14 @@ first, object second, int status)
                             textBoxPassword.Text = null;
                             textBoxRepeatPassword.Text = null;
                             textBoxEmail.Text = null;
-                        }
-                        catch
-                        {
-                            label6.Location = new Point(120 ,196);
-                            label6.Visible = true;
-                            label6.Text = "некорректная почта";
-                            label6.ForeColor = Color.Red;
-                        }
+                        //}
+                        //catch
+                        //{
+                        //    label6.Location = new Point(120 ,196);
+                        //    label6.Visible = true;
+                        //    label6.Text = "некорректная почта";
+                        //    label6.ForeColor = Color.Red;
+                        //}
                     }
                 }
             }
